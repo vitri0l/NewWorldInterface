@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.13.35913.81 d17.13
+# Visual Studio Version 18
+VisualStudioVersion = 18.6.11822.322 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NewWorldInterface", "NewWorldInterface\NewWorldInterface.vcxproj", "{D5532C36-2742-C15D-F678-E95D1EFF9672}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NewWorldUserInterface", "..\NewWorldUserInterface\NewWorldUserInterface\NewWorldUserInterface.vcxproj", "{CA28C393-020A-4B1D-A1C0-8752AEDD55FD}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NewWorldUserInterface", "NewWorldUserInterface\NewWorldUserInterface\NewWorldUserInterface.vcxproj", "{CA28C393-020A-4B1D-A1C0-8752AEDD55FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
