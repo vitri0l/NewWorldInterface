@@ -1,0 +1,357 @@
+nt!MiCreateDataFileMap:
+fffff807`68b0d6f0 488bc4          mov     rax,rsp
+fffff807`68b0d6f3 48895808        mov     qword ptr [rax+8],rbx
+fffff807`68b0d6f7 4c894018        mov     qword ptr [rax+18h],r8
+fffff807`68b0d6fb 48895010        mov     qword ptr [rax+10h],rdx
+fffff807`68b0d6ff 55              push    rbp
+fffff807`68b0d700 56              push    rsi
+fffff807`68b0d701 57              push    rdi
+fffff807`68b0d702 4154            push    r12
+fffff807`68b0d704 4155            push    r13
+fffff807`68b0d706 4156            push    r14
+fffff807`68b0d708 4157            push    r15
+fffff807`68b0d70a 4883ec30        sub     rsp,30h
+fffff807`68b0d70e 488360b800      and     qword ptr [rax-48h],0
+fffff807`68b0d713 498bf9          mov     rdi,r9
+fffff807`68b0d716 8b9c24a8000000  mov     ebx,dword ptr [rsp+0A8h]
+fffff807`68b0d71d 4c8bf1          mov     r14,rcx
+fffff807`68b0d720 8bc3            mov     eax,ebx
+fffff807`68b0d722 83e001          and     eax,1
+fffff807`68b0d725 898424a8000000  mov     dword ptr [rsp+0A8h],eax
+fffff807`68b0d72c 0f847a020000    je      nt!MiCreateDataFileMap+0x2bc (fffff807`68b0d9ac)  Branch
+
+nt!MiCreateDataFileMap+0x42:
+fffff807`68b0d732 498be9          mov     rbp,r9
+
+nt!MiCreateDataFileMap+0x45:
+fffff807`68b0d735 48b800f0ffffffff3f00 mov rax,3FFFFFFFFFF000h
+fffff807`68b0d73f 483be8          cmp     rbp,rax
+fffff807`68b0d742 0f874c751200    ja      nt!MiCreateDataFileMap+0x1275a4 (fffff807`68c34c94)  Branch
+
+nt!MiCreateDataFileMap+0x58:
+fffff807`68b0d748 4c8dbdff0f0000  lea     r15,[rbp+0FFFh]
+fffff807`68b0d74f ba30000000      mov     edx,30h
+fffff807`68b0d754 b900010000      mov     ecx,100h
+fffff807`68b0d759 49c1ef0c        shr     r15,0Ch
+fffff807`68b0d75d 41b84d6d536d    mov     r8d,6D536D4Dh
+fffff807`68b0d763 e8b82bb2ff      call    nt!MiAllocatePool (fffff807`68630320)
+fffff807`68b0d768 488bf8          mov     rdi,rax
+fffff807`68b0d76b 4885c0          test    rax,rax
+fffff807`68b0d76e 0f84b2751200    je      nt!MiCreateDataFileMap+0x127636 (fffff807`68c34d26)  Branch
+
+nt!MiCreateDataFileMap+0x84:
+fffff807`68b0d774 ba28010000      mov     edx,128h
+fffff807`68b0d779 b940000000      mov     ecx,40h
+fffff807`68b0d77e 41b84d6d4361    mov     r8d,61436D4Dh
+fffff807`68b0d784 e8972bb2ff      call    nt!MiAllocatePool (fffff807`68630320)
+fffff807`68b0d789 488bf0          mov     rsi,rax
+fffff807`68b0d78c 4885c0          test    rax,rax
+fffff807`68b0d78f 0f8409751200    je      nt!MiCreateDataFileMap+0x1275ae (fffff807`68c34c9e)  Branch
+
+nt!MiCreateDataFileMap+0xa5:
+fffff807`68b0d795 33d2            xor     edx,edx
+fffff807`68b0d797 81e300000100    and     ebx,10000h
+fffff807`68b0d79d 0f8500751200    jne     nt!MiCreateDataFileMap+0x1275b3 (fffff807`68c34ca3)  Branch
+
+nt!MiCreateDataFileMap+0xb3:
+fffff807`68b0d7a3 b800001000      mov     eax,100000h
+fffff807`68b0d7a8 8bcb            mov     ecx,ebx
+fffff807`68b0d7aa f7d9            neg     ecx
+fffff807`68b0d7ac 4d8bef          mov     r13,r15
+fffff807`68b0d7af 4d1be4          sbb     r12,r12
+fffff807`68b0d7b2 4533c0          xor     r8d,r8d
+fffff807`68b0d7b5 4c21442420      and     qword ptr [rsp+20h],r8
+fffff807`68b0d7ba 4c23e0          and     r12,rax
+fffff807`68b0d7bd 4c03e0          add     r12,rax
+fffff807`68b0d7c0 49c1e503        shl     r13,3
+fffff807`68b0d7c4 4885d2          test    rdx,rdx
+fffff807`68b0d7c7 410f44d4        cmove   edx,r12d
+
+nt!MiCreateDataFileMap+0xdb:
+fffff807`68b0d7cb 8bc2            mov     eax,edx
+fffff807`68b0d7cd 458bf5          mov     r14d,r13d
+fffff807`68b0d7d0 4c3be8          cmp     r13,rax
+fffff807`68b0d7d3 440f43f2        cmovae  r14d,edx
+fffff807`68b0d7d7 4d85c0          test    r8,r8
+fffff807`68b0d7da 0f8532020000    jne     nt!MiCreateDataFileMap+0x322 (fffff807`68b0da12)  Branch
+
+nt!MiCreateDataFileMap+0xf0:
+fffff807`68b0d7e0 4c8d8680000000  lea     r8,[rsi+80h]
+
+nt!MiCreateDataFileMap+0xf7:
+fffff807`68b0d7e7 418bce          mov     ecx,r14d
+fffff807`68b0d7ea 4c89442420      mov     qword ptr [rsp+20h],r8
+fffff807`68b0d7ef c1e903          shr     ecx,3
+fffff807`68b0d7f2 4189482c        mov     dword ptr [r8+2Ch],ecx
+fffff807`68b0d7f6 418bce          mov     ecx,r14d
+fffff807`68b0d7f9 4c2be9          sub     r13,rcx
+fffff807`68b0d7fc 0f853d020000    jne     nt!MiCreateDataFileMap+0x34f (fffff807`68b0da3f)  Branch
+
+nt!MiCreateDataFileMap+0x112:
+fffff807`68b0d802 488b842480000000 mov     rax,qword ptr [rsp+80h]
+fffff807`68b0d80a 458d4501        lea     r8d,[r13+1]
+fffff807`68b0d80e 488b4c2478      mov     rcx,qword ptr [rsp+78h]
+fffff807`68b0d813 0f57c0          xorps   xmm0,xmm0
+fffff807`68b0d816 0f1107          movups  xmmword ptr [rdi],xmm0
+fffff807`68b0d819 41b9ff030000    mov     r9d,3FFh
+fffff807`68b0d81f ba00800000      mov     edx,8000h
+fffff807`68b0d824 0f114710        movups  xmmword ptr [rdi+10h],xmm0
+fffff807`68b0d828 488938          mov     qword ptr [rax],rdi
+fffff807`68b0d82b 488d4608        lea     rax,[rsi+8]
+fffff807`68b0d82f 0f114720        movups  xmmword ptr [rdi+20h],xmm0
+fffff807`68b0d833 48894008        mov     qword ptr [rax+8],rax
+fffff807`68b0d837 488900          mov     qword ptr [rax],rax
+fffff807`68b0d83a 48893e          mov     qword ptr [rsi],rdi
+fffff807`68b0d83d 4c894670        mov     qword ptr [rsi+70h],r8
+fffff807`68b0d841 4c894618        mov     qword ptr [rsi+18h],r8
+fffff807`68b0d845 0fb709          movzx   ecx,word ptr [rcx]
+fffff807`68b0d848 66334e3c        xor     cx,word ptr [rsi+3Ch]
+fffff807`68b0d84c 4c216e68        and     qword ptr [rsi+68h],r13
+fffff807`68b0d850 664123c9        and     cx,r9w
+fffff807`68b0d854 66314e3c        xor     word ptr [rsi+3Ch],cx
+fffff807`68b0d858 8b4e38          mov     ecx,dword ptr [rsi+38h]
+fffff807`68b0d85b 4439ac24a8000000 cmp     dword ptr [rsp+0A8h],r13d
+fffff807`68b0d863 0f84a0010000    je      nt!MiCreateDataFileMap+0x319 (fffff807`68b0da09)  Branch
+
+nt!MiCreateDataFileMap+0x179:
+fffff807`68b0d869 0bca            or      ecx,edx
+
+nt!MiCreateDataFileMap+0x17b:
+fffff807`68b0d86b 8b8424a0000000  mov     eax,dword ptr [rsp+0A0h]
+fffff807`68b0d872 41be06000000    mov     r14d,6
+fffff807`68b0d878 c1e014          shl     eax,14h
+fffff807`68b0d87b 33c1            xor     eax,ecx
+fffff807`68b0d87d 250000f003      and     eax,3F00000h
+fffff807`68b0d882 33c1            xor     eax,ecx
+fffff807`68b0d884 0d82000000      or      eax,82h
+fffff807`68b0d889 894638          mov     dword ptr [rsi+38h],eax
+fffff807`68b0d88c 85db            test    ebx,ebx
+fffff807`68b0d88e 0f8530741200    jne     nt!MiCreateDataFileMap+0x1275d4 (fffff807`68c34cc4)  Branch
+
+nt!MiCreateDataFileMap+0x1a4:
+fffff807`68b0d894 f784249800000000000010 test dword ptr [rsp+98h],10000000h
+fffff807`68b0d89f 0f852b741200    jne     nt!MiCreateDataFileMap+0x1275e0 (fffff807`68c34cd0)  Branch
+
+nt!MiCreateDataFileMap+0x1b5:
+fffff807`68b0d8a5 f784249800000000000040 test dword ptr [rsp+98h],40000000h
+fffff807`68b0d8b0 0f8529741200    jne     nt!MiCreateDataFileMap+0x1275ef (fffff807`68c34cdf)  Branch
+
+nt!MiCreateDataFileMap+0x1c6:
+fffff807`68b0d8b6 8a4f0e          mov     cl,byte ptr [rdi+0Eh]
+fffff807`68b0d8b9 488d9680000000  lea     rdx,[rsi+80h]
+fffff807`68b0d8c0 80e1c1          and     cl,0C1h
+fffff807`68b0d8c3 488937          mov     qword ptr [rdi],rsi
+fffff807`68b0d8c6 498bc7          mov     rax,r15
+fffff807`68b0d8c9 48896f18        mov     qword ptr [rdi+18h],rbp
+fffff807`68b0d8cd 48c1e820        shr     rax,20h
+fffff807`68b0d8d1 33db            xor     ebx,ebx
+fffff807`68b0d8d3 6633470c        xor     ax,word ptr [rdi+0Ch]
+fffff807`68b0d8d7 664123c1        and     ax,r9w
+fffff807`68b0d8db 44897f08        mov     dword ptr [rdi+8],r15d
+fffff807`68b0d8df 6631470c        xor     word ptr [rdi+0Ch],ax
+fffff807`68b0d8e3 418ac6          mov     al,r14b
+fffff807`68b0d8e6 02c0            add     al,al
+fffff807`68b0d8e8 0ac8            or      cl,al
+fffff807`68b0d8ea 884f0e          mov     byte ptr [rdi+0Eh],cl
+fffff807`68b0d8ed 664503f6        add     r14w,r14w
+
+nt!MiCreateDataFileMap+0x201:
+fffff807`68b0d8f1 0fb74220        movzx   eax,word ptr [rdx+20h]
+fffff807`68b0d8f5 488d7a10        lea     rdi,[rdx+10h]
+fffff807`68b0d8f9 664123c0        and     ax,r8w
+fffff807`68b0d8fd 488932          mov     qword ptr [rdx],rsi
+fffff807`68b0d900 448b422c        mov     r8d,dword ptr [rdx+2Ch]
+fffff807`68b0d904 488bcb          mov     rcx,rbx
+fffff807`68b0d907 48c1e920        shr     rcx,20h
+fffff807`68b0d90b 66c1e106        shl     cx,6
+fffff807`68b0d90f 660bc8          or      cx,ax
+fffff807`68b0d912 895a24          mov     dword ptr [rdx+24h],ebx
+fffff807`68b0d915 b8c1ff0000      mov     eax,0FFC1h
+fffff807`68b0d91a 6623c8          and     cx,ax
+fffff807`68b0d91d 66410bce        or      cx,r14w
+fffff807`68b0d921 48833f00        cmp     qword ptr [rdi],0
+fffff807`68b0d925 66894a20        mov     word ptr [rdx+20h],cx
+fffff807`68b0d929 0f851f010000    jne     nt!MiCreateDataFileMap+0x35e (fffff807`68b0da4e)  Branch
+
+nt!MiCreateDataFileMap+0x23f:
+fffff807`68b0d92f 0fb74a22        movzx   ecx,word ptr [rdx+22h]
+fffff807`68b0d933 452bc7          sub     r8d,r15d
+fffff807`68b0d936 4403c3          add     r8d,ebx
+fffff807`68b0d939 0fb7c5          movzx   eax,bp
+fffff807`68b0d93c 44334234        xor     r8d,dword ptr [rdx+34h]
+fffff807`68b0d940 6683e10f        and     cx,0Fh
+fffff807`68b0d944 66c1e004        shl     ax,4
+fffff807`68b0d948 4181e0ffffff3f  and     r8d,3FFFFFFFh
+fffff807`68b0d94f 44314234        xor     dword ptr [rdx+34h],r8d
+fffff807`68b0d953 660bc8          or      cx,ax
+fffff807`68b0d956 488bc5          mov     rax,rbp
+fffff807`68b0d959 66894a22        mov     word ptr [rdx+22h],cx
+fffff807`68b0d95d 48c1e80c        shr     rax,0Ch
+fffff807`68b0d961 2bc3            sub     eax,ebx
+
+nt!MiCreateDataFileMap+0x273:
+fffff807`68b0d963 894228          mov     dword ptr [rdx+28h],eax
+fffff807`68b0d966 4533c0          xor     r8d,r8d
+fffff807`68b0d969 8b422c          mov     eax,dword ptr [rdx+2Ch]
+fffff807`68b0d96c 488bce          mov     rcx,rsi
+fffff807`68b0d96f 4803d8          add     rbx,rax
+fffff807`68b0d972 488d4250        lea     rax,[rdx+50h]
+fffff807`68b0d976 48894008        mov     qword ptr [rax+8],rax
+fffff807`68b0d97a 488900          mov     qword ptr [rax],rax
+fffff807`68b0d97d e826bdc4ff      call    nt!MiInsertSubsectionNode (fffff807`687596a8)
+fffff807`68b0d982 488b17          mov     rdx,qword ptr [rdi]
+fffff807`68b0d985 41b801000000    mov     r8d,1
+fffff807`68b0d98b 4885d2          test    rdx,rdx
+fffff807`68b0d98e 0f855dffffff    jne     nt!MiCreateDataFileMap+0x201 (fffff807`68b0d8f1)  Branch
+
+nt!MiCreateDataFileMap+0x2a4:
+fffff807`68b0d994 33c0            xor     eax,eax
+
+nt!MiCreateDataFileMap+0x2a6:
+fffff807`68b0d996 488b5c2470      mov     rbx,qword ptr [rsp+70h]
+fffff807`68b0d99b 4883c430        add     rsp,30h
+fffff807`68b0d99f 415f            pop     r15
+fffff807`68b0d9a1 415e            pop     r14
+fffff807`68b0d9a3 415d            pop     r13
+fffff807`68b0d9a5 415c            pop     r12
+fffff807`68b0d9a7 5f              pop     rdi
+fffff807`68b0d9a8 5e              pop     rsi
+fffff807`68b0d9a9 5d              pop     rbp
+fffff807`68b0d9aa c3              ret
+
+nt!MiCreateDataFileMap+0x2bc:
+fffff807`68b0d9ac 488d542420      lea     rdx,[rsp+20h]
+fffff807`68b0d9b1 e8ba000000      call    nt!FsRtlGetFileSize (fffff807`68b0da70)
+fffff807`68b0d9b6 3dba0000c0      cmp     eax,0C00000BAh
+fffff807`68b0d9bb 0f84c9721200    je      nt!MiCreateDataFileMap+0x12759a (fffff807`68c34c8a)  Branch
+
+nt!MiCreateDataFileMap+0x2d1:
+fffff807`68b0d9c1 85c0            test    eax,eax
+fffff807`68b0d9c3 78d1            js      nt!MiCreateDataFileMap+0x2a6 (fffff807`68b0d996)  Branch
+
+nt!MiCreateDataFileMap+0x2d5:
+fffff807`68b0d9c5 488b6c2420      mov     rbp,qword ptr [rsp+20h]
+fffff807`68b0d9ca 4885ed          test    rbp,rbp
+fffff807`68b0d9cd 0f8483000000    je      nt!MiCreateDataFileMap+0x366 (fffff807`68b0da56)  Branch
+
+nt!MiCreateDataFileMap+0x2e3:
+fffff807`68b0d9d3 483bfd          cmp     rdi,rbp
+fffff807`68b0d9d6 0f8659fdffff    jbe     nt!MiCreateDataFileMap+0x45 (fffff807`68b0d735)  Branch
+
+nt!MiCreateDataFileMap+0x2ec:
+fffff807`68b0d9dc f684249000000044 test    byte ptr [rsp+90h],44h
+fffff807`68b0d9e4 0f84aa721200    je      nt!MiCreateDataFileMap+0x1275a4 (fffff807`68c34c94)  Branch
+
+nt!MiCreateDataFileMap+0x2fa:
+fffff807`68b0d9ea 488d542420      lea     rdx,[rsp+20h]
+fffff807`68b0d9ef 48897c2420      mov     qword ptr [rsp+20h],rdi
+fffff807`68b0d9f4 498bce          mov     rcx,r14
+fffff807`68b0d9f7 488bef          mov     rbp,rdi
+fffff807`68b0d9fa e87d96faff      call    nt!FsRtlSetFileSize (fffff807`68ab707c)
+fffff807`68b0d9ff 85c0            test    eax,eax
+fffff807`68b0da01 0f892efdffff    jns     nt!MiCreateDataFileMap+0x45 (fffff807`68b0d735)  Branch
+
+nt!MiCreateDataFileMap+0x317:
+fffff807`68b0da07 eb8d            jmp     nt!MiCreateDataFileMap+0x2a6 (fffff807`68b0d996)  Branch
+
+nt!MiCreateDataFileMap+0x319:
+fffff807`68b0da09 4c894630        mov     qword ptr [rsi+30h],r8
+fffff807`68b0da0d e959feffff      jmp     nt!MiCreateDataFileMap+0x17b (fffff807`68b0d86b)  Branch
+
+nt!MiCreateDataFileMap+0x322:
+fffff807`68b0da12 ba90000000      mov     edx,90h
+fffff807`68b0da17 41b84d6d5363    mov     r8d,63536D4Dh
+fffff807`68b0da1d 8d4ab0          lea     ecx,[rdx-50h]
+fffff807`68b0da20 e8fb28b2ff      call    nt!MiAllocatePool (fffff807`68630320)
+fffff807`68b0da25 4c8bc0          mov     r8,rax
+fffff807`68b0da28 4885c0          test    rax,rax
+fffff807`68b0da2b 0f84c2721200    je      nt!MiCreateDataFileMap+0x127603 (fffff807`68c34cf3)  Branch
+
+nt!MiCreateDataFileMap+0x341:
+fffff807`68b0da31 488b442420      mov     rax,qword ptr [rsp+20h]
+fffff807`68b0da36 4c894010        mov     qword ptr [rax+10h],r8
+fffff807`68b0da3a e9a8fdffff      jmp     nt!MiCreateDataFileMap+0xf7 (fffff807`68b0d7e7)  Branch
+
+nt!MiCreateDataFileMap+0x34f:
+fffff807`68b0da3f 453bf4          cmp     r14d,r12d
+fffff807`68b0da42 418bd4          mov     edx,r12d
+fffff807`68b0da45 410f43d6        cmovae  edx,r14d
+fffff807`68b0da49 e97dfdffff      jmp     nt!MiCreateDataFileMap+0xdb (fffff807`68b0d7cb)  Branch
+
+nt!MiCreateDataFileMap+0x35e:
+fffff807`68b0da4e 418bc0          mov     eax,r8d
+fffff807`68b0da51 e90dffffff      jmp     nt!MiCreateDataFileMap+0x273 (fffff807`68b0d963)  Branch
+
+nt!MiCreateDataFileMap+0x366:
+fffff807`68b0da56 4885ff          test    rdi,rdi
+fffff807`68b0da59 0f8574ffffff    jne     nt!MiCreateDataFileMap+0x2e3 (fffff807`68b0d9d3)  Branch
+
+nt!MiCreateDataFileMap+0x36f:
+fffff807`68b0da5f b81e0100c0      mov     eax,0C000011Eh
+fffff807`68b0da64 e92dffffff      jmp     nt!MiCreateDataFileMap+0x2a6 (fffff807`68b0d996)  Branch
+
+nt!MiCreateDataFileMap+0x12759a:
+fffff807`68c34c8a b8200000c0      mov     eax,0C0000020h
+fffff807`68c34c8f e9028dedff      jmp     nt!MiCreateDataFileMap+0x2a6 (fffff807`68b0d996)  Branch
+
+nt!MiCreateDataFileMap+0x1275a4:
+fffff807`68c34c94 b8400000c0      mov     eax,0C0000040h
+fffff807`68c34c99 e9f88cedff      jmp     nt!MiCreateDataFileMap+0x2a6 (fffff807`68b0d996)  Branch
+
+nt!MiCreateDataFileMap+0x1275ae:
+fffff807`68c34c9e 488bcf          mov     rcx,rdi
+fffff807`68c34ca1 eb7c            jmp     nt!MiCreateDataFileMap+0x12762f (fffff807`68c34d1f)  Branch
+
+nt!MiCreateDataFileMap+0x1275b3:
+fffff807`68c34ca3 4981ff00020000  cmp     r15,200h
+fffff807`68c34caa 0f86f38aedff    jbe     nt!MiCreateDataFileMap+0xb3 (fffff807`68b0d7a3)  Branch
+
+nt!MiCreateDataFileMap+0x1275c0:
+fffff807`68c34cb0 498bce          mov     rcx,r14
+fffff807`68c34cb3 e8f4080a00      call    nt!MiComputeIdealFirstSubsection (fffff807`68cd55ac)
+fffff807`68c34cb8 488bd0          mov     rdx,rax
+fffff807`68c34cbb 48c1e203        shl     rdx,3
+fffff807`68c34cbf e9df8aedff      jmp     nt!MiCreateDataFileMap+0xb3 (fffff807`68b0d7a3)  Branch
+
+nt!MiCreateDataFileMap+0x1275d4:
+fffff807`68c34cc4 0fbae81e        bts     eax,1Eh
+fffff807`68c34cc8 894638          mov     dword ptr [rsi+38h],eax
+fffff807`68c34ccb e9e68bedff      jmp     nt!MiCreateDataFileMap+0x1c6 (fffff807`68b0d8b6)  Branch
+
+nt!MiCreateDataFileMap+0x1275e0:
+fffff807`68c34cd0 6609570c        or      word ptr [rdi+0Ch],dx
+fffff807`68c34cd4 41be0e000000    mov     r14d,0Eh
+fffff807`68c34cda e9d78bedff      jmp     nt!MiCreateDataFileMap+0x1c6 (fffff807`68b0d8b6)  Branch
+
+nt!MiCreateDataFileMap+0x1275ef:
+fffff807`68c34cdf b800400000      mov     eax,4000h
+fffff807`68c34ce4 41be1e000000    mov     r14d,1Eh
+fffff807`68c34cea 6609470c        or      word ptr [rdi+0Ch],ax
+fffff807`68c34cee e9c38bedff      jmp     nt!MiCreateDataFileMap+0x1c6 (fffff807`68b0d8b6)  Branch
+
+nt!MiCreateDataFileMap+0x127603:
+fffff807`68c34cf3 33d2            xor     edx,edx
+fffff807`68c34cf5 488bcf          mov     rcx,rdi
+fffff807`68c34cf8 e8b3531800      call    nt!ExFreePool (fffff807`68dba0b0)
+fffff807`68c34cfd 488b8e90000000  mov     rcx,qword ptr [rsi+90h]
+fffff807`68c34d04 4885c9          test    rcx,rcx
+fffff807`68c34d07 7413            je      nt!MiCreateDataFileMap+0x12762c (fffff807`68c34d1c)  Branch
+
+nt!MiCreateDataFileMap+0x127619:
+fffff807`68c34d09 488b5910        mov     rbx,qword ptr [rcx+10h]
+fffff807`68c34d0d 33d2            xor     edx,edx
+fffff807`68c34d0f e89c531800      call    nt!ExFreePool (fffff807`68dba0b0)
+fffff807`68c34d14 488bcb          mov     rcx,rbx
+fffff807`68c34d17 4885db          test    rbx,rbx
+fffff807`68c34d1a 75ed            jne     nt!MiCreateDataFileMap+0x127619 (fffff807`68c34d09)  Branch
+
+nt!MiCreateDataFileMap+0x12762c:
+fffff807`68c34d1c 488bce          mov     rcx,rsi
+
+nt!MiCreateDataFileMap+0x12762f:
+fffff807`68c34d1f 33d2            xor     edx,edx
+fffff807`68c34d21 e88a531800      call    nt!ExFreePool (fffff807`68dba0b0)
+
+nt!MiCreateDataFileMap+0x127636:
+fffff807`68c34d26 b89a0000c0      mov     eax,0C000009Ah
+fffff807`68c34d2b e9668cedff      jmp     nt!MiCreateDataFileMap+0x2a6 (fffff807`68b0d996)  Branch

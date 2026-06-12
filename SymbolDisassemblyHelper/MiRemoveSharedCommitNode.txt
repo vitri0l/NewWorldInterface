@@ -1,0 +1,280 @@
+kd> uf nt!MiRemoveSharedCommitNode
+nt!MiRemoveSharedCommitNode:
+fffff803`7d82cda0 4053            push    rbx
+fffff803`7d82cda2 55              push    rbp
+fffff803`7d82cda3 56              push    rsi
+fffff803`7d82cda4 4156            push    r14
+fffff803`7d82cda6 4883ec48        sub     rsp,48h
+fffff803`7d82cdaa 458bf0          mov     r14d,r8d
+fffff803`7d82cdad 488bda          mov     rbx,rdx
+fffff803`7d82cdb0 488bf1          mov     rsi,rcx
+fffff803`7d82cdb3 f6c201          test    dl,1
+fffff803`7d82cdb6 0f85f9010000    jne     nt!MiRemoveSharedCommitNode+0x215 (fffff803`7d82cfb5)  Branch
+
+nt!MiRemoveSharedCommitNode+0x1c:
+fffff803`7d82cdbc 488bea          mov     rbp,rdx
+fffff803`7d82cdbf e82cabc0ff      call    nt!MiIncludeSharedCommit (fffff803`7d4378f0)
+fffff803`7d82cdc4 85c0            test    eax,eax
+fffff803`7d82cdc6 0f8449010000    je      nt!MiRemoveSharedCommitNode+0x175 (fffff803`7d82cf15)  Branch
+
+nt!MiRemoveSharedCommitNode+0x2c:
+fffff803`7d82cdcc 8b4138          mov     eax,dword ptr [rcx+38h]
+fffff803`7d82cdcf a820            test    al,20h
+fffff803`7d82cdd1 0f853e010000    jne     nt!MiRemoveSharedCommitNode+0x175 (fffff803`7d82cf15)  Branch
+
+nt!MiRemoveSharedCommitNode+0x37:
+fffff803`7d82cdd7 8b837c080000    mov     eax,dword ptr [rbx+87Ch]
+fffff803`7d82cddd a810            test    al,10h
+fffff803`7d82cddf 0f8530010000    jne     nt!MiRemoveSharedCommitNode+0x175 (fffff803`7d82cf15)  Branch
+
+nt!MiRemoveSharedCommitNode+0x45:
+fffff803`7d82cde5 48c784248800000000000000 mov qword ptr [rsp+88h],0
+
+nt!MiRemoveSharedCommitNode+0x51:
+fffff803`7d82cdf1 48897c2470      mov     qword ptr [rsp+70h],rdi
+fffff803`7d82cdf6 4c89642440      mov     qword ptr [rsp+40h],r12
+fffff803`7d82cdfb 4c896c2438      mov     qword ptr [rsp+38h],r13
+fffff803`7d82ce00 458bee          mov     r13d,r14d
+fffff803`7d82ce03 4c897c2430      mov     qword ptr [rsp+30h],r15
+fffff803`7d82ce08 654c8b3c2588010000 mov   r15,qword ptr gs:[188h]
+fffff803`7d82ce11 488b06          mov     rax,qword ptr [rsi]
+fffff803`7d82ce14 4889442420      mov     qword ptr [rsp+20h],rax
+fffff803`7d82ce19 488d4848        lea     rcx,[rax+48h]
+fffff803`7d82ce1d 48894c2478      mov     qword ptr [rsp+78h],rcx
+fffff803`7d82ce22 4183e501        and     r13d,1
+fffff803`7d82ce26 7520            jne     nt!MiRemoveSharedCommitNode+0xa8 (fffff803`7d82ce48)  Branch
+
+nt!MiRemoveSharedCommitNode+0x88:
+fffff803`7d82ce28 6641ff8fe6010000 dec     word ptr [r15+1E6h]
+fffff803`7d82ce30 488d8d30090000  lea     rcx,[rbp+930h]
+fffff803`7d82ce37 33d2            xor     edx,edx
+fffff803`7d82ce39 e802ccbfff      call    nt!ExAcquirePushLockExclusiveEx (fffff803`7d429a40)
+fffff803`7d82ce3e 488b442420      mov     rax,qword ptr [rsp+20h]
+fffff803`7d82ce43 488b4c2478      mov     rcx,qword ptr [rsp+78h]
+
+nt!MiRemoveSharedCommitNode+0xa8:
+fffff803`7d82ce48 458be6          mov     r12d,r14d
+fffff803`7d82ce4b 4183e402        and     r12d,2
+fffff803`7d82ce4f 7518            jne     nt!MiRemoveSharedCommitNode+0xc9 (fffff803`7d82ce69)  Branch
+
+nt!MiRemoveSharedCommitNode+0xb1:
+fffff803`7d82ce51 6641ff8fe6010000 dec     word ptr [r15+1E6h]
+fffff803`7d82ce59 488d4828        lea     rcx,[rax+28h]
+fffff803`7d82ce5d 33d2            xor     edx,edx
+fffff803`7d82ce5f e8dccbbfff      call    nt!ExAcquirePushLockExclusiveEx (fffff803`7d429a40)
+fffff803`7d82ce64 488b4c2478      mov     rcx,qword ptr [rsp+78h]
+
+nt!MiRemoveSharedCommitNode+0xc9:
+fffff803`7d82ce69 488b39          mov     rdi,qword ptr [rcx]
+fffff803`7d82ce6c 4885ff          test    rdi,rdi
+fffff803`7d82ce6f 0f84b8000000    je      nt!MiRemoveSharedCommitNode+0x18d (fffff803`7d82cf2d)  Branch
+
+nt!MiRemoveSharedCommitNode+0xd5:
+fffff803`7d82ce75 483b5f18        cmp     rbx,qword ptr [rdi+18h]
+fffff803`7d82ce79 0f87a1000000    ja      nt!MiRemoveSharedCommitNode+0x180 (fffff803`7d82cf20)  Branch
+
+nt!MiRemoveSharedCommitNode+0xdf:
+fffff803`7d82ce7f 0f83a8000000    jae     nt!MiRemoveSharedCommitNode+0x18d (fffff803`7d82cf2d)  Branch
+
+nt!MiRemoveSharedCommitNode+0xe5:
+fffff803`7d82ce85 488b3f          mov     rdi,qword ptr [rdi]
+fffff803`7d82ce88 e997000000      jmp     nt!MiRemoveSharedCommitNode+0x184 (fffff803`7d82cf24)  Branch
+
+nt!MiRemoveSharedCommitNode+0xed:
+fffff803`7d82ce8d 33ff            xor     edi,edi
+
+nt!MiRemoveSharedCommitNode+0xef:
+fffff803`7d82ce8f 48c7c3ffffffff  mov     rbx,0FFFFFFFFFFFFFFFFh
+fffff803`7d82ce96 4585e4          test    r12d,r12d
+fffff803`7d82ce99 7529            jne     nt!MiRemoveSharedCommitNode+0x124 (fffff803`7d82cec4)  Branch
+
+nt!MiRemoveSharedCommitNode+0xfb:
+fffff803`7d82ce9b 488b742420      mov     rsi,qword ptr [rsp+20h]
+fffff803`7d82cea0 488bc3          mov     rax,rbx
+fffff803`7d82cea3 f0480fc14628    lock xadd qword ptr [rsi+28h],rax
+fffff803`7d82cea9 2406            and     al,6
+fffff803`7d82ceab 3c02            cmp     al,2
+fffff803`7d82cead 0f842e010000    je      nt!MiRemoveSharedCommitNode+0x241 (fffff803`7d82cfe1)  Branch
+
+nt!MiRemoveSharedCommitNode+0x113:
+fffff803`7d82ceb3 488d4e28        lea     rcx,[rsi+28h]
+fffff803`7d82ceb7 e874aebfff      call    nt!KeAbPostRelease (fffff803`7d427d30)
+fffff803`7d82cebc 498bcf          mov     rcx,r15
+fffff803`7d82cebf e87ccfbfff      call    nt!KiLeaveGuardedRegionUnsafe (fffff803`7d429e40)
+
+nt!MiRemoveSharedCommitNode+0x124:
+fffff803`7d82cec4 4585ed          test    r13d,r13d
+fffff803`7d82cec7 7529            jne     nt!MiRemoveSharedCommitNode+0x152 (fffff803`7d82cef2)  Branch
+
+nt!MiRemoveSharedCommitNode+0x129:
+fffff803`7d82cec9 f0480fc19d30090000 lock xadd qword ptr [rbp+930h],rbx
+fffff803`7d82ced2 80e306          and     bl,6
+fffff803`7d82ced5 80fb02          cmp     bl,2
+fffff803`7d82ced8 0f8411010000    je      nt!MiRemoveSharedCommitNode+0x24f (fffff803`7d82cfef)  Branch
+
+nt!MiRemoveSharedCommitNode+0x13e:
+fffff803`7d82cede 488d8d30090000  lea     rcx,[rbp+930h]
+fffff803`7d82cee5 e846aebfff      call    nt!KeAbPostRelease (fffff803`7d427d30)
+fffff803`7d82ceea 498bcf          mov     rcx,r15
+fffff803`7d82ceed e84ecfbfff      call    nt!KiLeaveGuardedRegionUnsafe (fffff803`7d429e40)
+
+nt!MiRemoveSharedCommitNode+0x152:
+fffff803`7d82cef2 4885ff          test    rdi,rdi
+fffff803`7d82cef5 740a            je      nt!MiRemoveSharedCommitNode+0x161 (fffff803`7d82cf01)  Branch
+
+nt!MiRemoveSharedCommitNode+0x157:
+fffff803`7d82cef7 33d2            xor     edx,edx
+fffff803`7d82cef9 488bcf          mov     rcx,rdi
+fffff803`7d82cefc e8af313900      call    nt!ExFreePool (fffff803`7dbc00b0)
+
+nt!MiRemoveSharedCommitNode+0x161:
+fffff803`7d82cf01 4c8b6c2438      mov     r13,qword ptr [rsp+38h]
+fffff803`7d82cf06 4c8b642440      mov     r12,qword ptr [rsp+40h]
+fffff803`7d82cf0b 488b7c2470      mov     rdi,qword ptr [rsp+70h]
+fffff803`7d82cf10 4c8b7c2430      mov     r15,qword ptr [rsp+30h]
+
+nt!MiRemoveSharedCommitNode+0x175:
+fffff803`7d82cf15 4883c448        add     rsp,48h
+fffff803`7d82cf19 415e            pop     r14
+fffff803`7d82cf1b 5e              pop     rsi
+fffff803`7d82cf1c 5d              pop     rbp
+fffff803`7d82cf1d 5b              pop     rbx
+fffff803`7d82cf1e c3              ret
+
+nt!MiRemoveSharedCommitNode+0x180:
+fffff803`7d82cf20 488b7f08        mov     rdi,qword ptr [rdi+8]
+
+nt!MiRemoveSharedCommitNode+0x184:
+fffff803`7d82cf24 4885ff          test    rdi,rdi
+fffff803`7d82cf27 0f8548ffffff    jne     nt!MiRemoveSharedCommitNode+0xd5 (fffff803`7d82ce75)  Branch
+
+nt!MiRemoveSharedCommitNode+0x18d:
+fffff803`7d82cf2d 48836f2001      sub     qword ptr [rdi+20h],1
+fffff803`7d82cf32 0f8555ffffff    jne     nt!MiRemoveSharedCommitNode+0xed (fffff803`7d82ce8d)  Branch
+
+nt!MiRemoveSharedCommitNode+0x198:
+fffff803`7d82cf38 488bd7          mov     rdx,rdi
+fffff803`7d82cf3b e800f4c9ff      call    nt!RtlAvlRemoveNode (fffff803`7d4cc340)
+fffff803`7d82cf40 488bce          mov     rcx,rsi
+fffff803`7d82cf43 e8f0a9c0ff      call    nt!MiGetCommittedPages (fffff803`7d437938)
+fffff803`7d82cf48 48f7d8          neg     rax
+fffff803`7d82cf4b 4885ed          test    rbp,rbp
+fffff803`7d82cf4e 747b            je      nt!MiRemoveSharedCommitNode+0x22b (fffff803`7d82cfcb)  Branch
+
+nt!MiRemoveSharedCommitNode+0x1b0:
+fffff803`7d82cf50 f0480fc18528090000 lock xadd qword ptr [rbp+928h],rax
+fffff803`7d82cf59 488b5728        mov     rdx,qword ptr [rdi+28h]
+fffff803`7d82cf5d 488d4728        lea     rax,[rdi+28h]
+fffff803`7d82cf61 48394208        cmp     qword ptr [rdx+8],rax
+fffff803`7d82cf65 0f85ad441d00    jne     nt!MiRemoveSharedCommitNode+0x1d4678 (fffff803`7da01418)  Branch
+
+nt!MiRemoveSharedCommitNode+0x1cb:
+fffff803`7d82cf6b 488b4808        mov     rcx,qword ptr [rax+8]
+fffff803`7d82cf6f 483901          cmp     qword ptr [rcx],rax
+fffff803`7d82cf72 0f85a0441d00    jne     nt!MiRemoveSharedCommitNode+0x1d4678 (fffff803`7da01418)  Branch
+
+nt!MiRemoveSharedCommitNode+0x1d8:
+fffff803`7d82cf78 488911          mov     qword ptr [rcx],rdx
+fffff803`7d82cf7b 48894a08        mov     qword ptr [rdx+8],rcx
+fffff803`7d82cf7f 41f6c604        test    r14b,4
+fffff803`7d82cf83 0f8506ffffff    jne     nt!MiRemoveSharedCommitNode+0xef (fffff803`7d82ce8f)  Branch
+
+nt!MiRemoveSharedCommitNode+0x1e9:
+fffff803`7d82cf89 8b857c080000    mov     eax,dword ptr [rbp+87Ch]
+fffff803`7d82cf8f a808            test    al,8
+fffff803`7d82cf91 0f84f8feffff    je      nt!MiRemoveSharedCommitNode+0xef (fffff803`7d82ce8f)  Branch
+
+nt!MiRemoveSharedCommitNode+0x1f7:
+fffff803`7d82cf97 488b9510050000  mov     rdx,qword ptr [rbp+510h]
+fffff803`7d82cf9e 41b803000000    mov     r8d,3
+fffff803`7d82cfa4 4883ca01        or      rdx,1
+fffff803`7d82cfa8 488bce          mov     rcx,rsi
+fffff803`7d82cfab e8f0fdffff      call    nt!MiRemoveSharedCommitNode (fffff803`7d82cda0)
+fffff803`7d82cfb0 e9dafeffff      jmp     nt!MiRemoveSharedCommitNode+0xef (fffff803`7d82ce8f)  Branch
+
+nt!MiRemoveSharedCommitNode+0x215:
+fffff803`7d82cfb5 488bcb          mov     rcx,rbx
+fffff803`7d82cfb8 4883e1fe        and     rcx,0FFFFFFFFFFFFFFFEh
+fffff803`7d82cfbc 48898c2488000000 mov     qword ptr [rsp+88h],rcx
+fffff803`7d82cfc4 33ed            xor     ebp,ebp
+fffff803`7d82cfc6 e926feffff      jmp     nt!MiRemoveSharedCommitNode+0x51 (fffff803`7d82cdf1)  Branch
+
+nt!MiRemoveSharedCommitNode+0x22b:
+fffff803`7d82cfcb 488b8c2488000000 mov     rcx,qword ptr [rsp+88h]
+fffff803`7d82cfd3 f0480fc18138050000 lock xadd qword ptr [rcx+538h],rax
+fffff803`7d82cfdc e9aefeffff      jmp     nt!MiRemoveSharedCommitNode+0xef (fffff803`7d82ce8f)  Branch
+
+nt!MiRemoveSharedCommitNode+0x241:
+fffff803`7d82cfe1 488d4e28        lea     rcx,[rsi+28h]
+fffff803`7d82cfe5 e856ebc1ff      call    nt!ExfTryToWakePushLock (fffff803`7d44bb40)
+fffff803`7d82cfea e9c4feffff      jmp     nt!MiRemoveSharedCommitNode+0x113 (fffff803`7d82ceb3)  Branch
+
+nt!MiRemoveSharedCommitNode+0x24f:
+fffff803`7d82cfef 488d8d30090000  lea     rcx,[rbp+930h]
+fffff803`7d82cff6 e845ebc1ff      call    nt!ExfTryToWakePushLock (fffff803`7d44bb40)
+fffff803`7d82cffb e9defeffff      jmp     nt!MiRemoveSharedCommitNode+0x13e (fffff803`7d82cede)  Branch
+
+nt!MiRemoveSharedCommitNode+0x1d4678:
+fffff803`7da01418 b903000000      mov     ecx,3
+fffff803`7da0141d cd29            int     29h
+fffff803`7da0141f cc              int     3
+fffff803`7da01420 41bd9a0000c0    mov     r13d,0C000009Ah
+fffff803`7da01426 e9a6bde2ff      jmp     nt!MiInsertSharedCommitNode+0x1c1 (fffff803`7d82d1d1)  Branch
+
+nt!MiInsertSharedCommitNode+0x1c1:
+fffff803`7d82d1d1 83bc249800000000 cmp     dword ptr [rsp+98h],0
+fffff803`7d82d1d9 48c7c3ffffffff  mov     rbx,0FFFFFFFFFFFFFFFFh
+fffff803`7d82d1e0 7529            jne     nt!MiInsertSharedCommitNode+0x1fb (fffff803`7d82d20b)  Branch
+
+nt!MiInsertSharedCommitNode+0x1d2:
+fffff803`7d82d1e2 488b7c2438      mov     rdi,qword ptr [rsp+38h]
+fffff803`7d82d1e7 488bc3          mov     rax,rbx
+fffff803`7d82d1ea f0480fc14728    lock xadd qword ptr [rdi+28h],rax
+fffff803`7d82d1f0 2406            and     al,6
+fffff803`7d82d1f2 3c02            cmp     al,2
+fffff803`7d82d1f4 0f84c7000000    je      nt!MiInsertSharedCommitNode+0x2b1 (fffff803`7d82d2c1)  Branch
+
+nt!MiInsertSharedCommitNode+0x1ea:
+fffff803`7d82d1fa 488d4f28        lea     rcx,[rdi+28h]
+fffff803`7d82d1fe e82dabbfff      call    nt!KeAbPostRelease (fffff803`7d427d30)
+fffff803`7d82d203 498bcf          mov     rcx,r15
+fffff803`7d82d206 e835ccbfff      call    nt!KiLeaveGuardedRegionUnsafe (fffff803`7d429e40)
+
+nt!MiInsertSharedCommitNode+0x1fb:
+fffff803`7d82d20b 837c242000      cmp     dword ptr [rsp+20h],0
+fffff803`7d82d210 7529            jne     nt!MiInsertSharedCommitNode+0x22b (fffff803`7d82d23b)  Branch
+
+nt!MiInsertSharedCommitNode+0x202:
+fffff803`7d82d212 f0490fc19e30090000 lock xadd qword ptr [r14+930h],rbx
+fffff803`7d82d21b 80e306          and     bl,6
+fffff803`7d82d21e 80fb02          cmp     bl,2
+fffff803`7d82d221 0f84a8000000    je      nt!MiInsertSharedCommitNode+0x2bf (fffff803`7d82d2cf)  Branch
+
+nt!MiInsertSharedCommitNode+0x217:
+fffff803`7d82d227 498d8e30090000  lea     rcx,[r14+930h]
+fffff803`7d82d22e e8fdaabfff      call    nt!KeAbPostRelease (fffff803`7d427d30)
+fffff803`7d82d233 498bcf          mov     rcx,r15
+fffff803`7d82d236 e805ccbfff      call    nt!KiLeaveGuardedRegionUnsafe (fffff803`7d429e40)
+
+nt!MiInsertSharedCommitNode+0x22b:
+fffff803`7d82d23b 488bac2488000000 mov     rbp,qword ptr [rsp+88h]
+fffff803`7d82d243 418bc5          mov     eax,r13d
+fffff803`7d82d246 488b9c2480000000 mov     rbx,qword ptr [rsp+80h]
+fffff803`7d82d24e 4c8bbc2490000000 mov     r15,qword ptr [rsp+90h]
+fffff803`7d82d256 4883c450        add     rsp,50h
+fffff803`7d82d25a 415e            pop     r14
+fffff803`7d82d25c 415d            pop     r13
+fffff803`7d82d25e 415c            pop     r12
+fffff803`7d82d260 5f              pop     rdi
+fffff803`7d82d261 5e              pop     rsi
+fffff803`7d82d262 c3              ret
+
+nt!MiInsertSharedCommitNode+0x2b1:
+fffff803`7d82d2c1 488d4f28        lea     rcx,[rdi+28h]
+fffff803`7d82d2c5 e876e8c1ff      call    nt!ExfTryToWakePushLock (fffff803`7d44bb40)
+fffff803`7d82d2ca e92bffffff      jmp     nt!MiInsertSharedCommitNode+0x1ea (fffff803`7d82d1fa)  Branch
+
+nt!MiInsertSharedCommitNode+0x2bf:
+fffff803`7d82d2cf 498d8e30090000  lea     rcx,[r14+930h]
+fffff803`7d82d2d6 e865e8c1ff      call    nt!ExfTryToWakePushLock (fffff803`7d44bb40)
+fffff803`7d82d2db e947ffffff      jmp     nt!MiInsertSharedCommitNode+0x217 (fffff803`7d82d227)  Branch

@@ -1,0 +1,45 @@
+kd> uf nt!MiCheckForConflictingVad
+nt!MiCheckForConflictingVad:
+fffff807`19e3c058 4c8b89d8070000  mov     r9,qword ptr [rcx+7D8h]
+fffff807`19e3c05f 48c1ea0c        shr     rdx,0Ch
+fffff807`19e3c063 49c1e80c        shr     r8,0Ch
+fffff807`19e3c067 eb03            jmp     nt!MiCheckForConflictingVad+0x14 (fffff807`19e3c06c)  Branch
+
+nt!MiCheckForConflictingVad+0x11:
+fffff807`19e3c069 4d8b09          mov     r9,qword ptr [r9]
+
+nt!MiCheckForConflictingVad+0x14:
+fffff807`19e3c06c 4d85c9          test    r9,r9
+fffff807`19e3c06f 742f            je      nt!MiCheckForConflictingVad+0x48 (fffff807`19e3c0a0)  Branch
+
+nt!MiCheckForConflictingVad+0x19:
+fffff807`19e3c071 410fb64920      movzx   ecx,byte ptr [r9+20h]
+fffff807`19e3c076 418b4118        mov     eax,dword ptr [r9+18h]
+fffff807`19e3c07a 48c1e120        shl     rcx,20h
+fffff807`19e3c07e 480bc8          or      rcx,rax
+fffff807`19e3c081 4c3bc1          cmp     r8,rcx
+fffff807`19e3c084 72e3            jb      nt!MiCheckForConflictingVad+0x11 (fffff807`19e3c069)  Branch
+
+nt!MiCheckForConflictingVad+0x2e:
+fffff807`19e3c086 410fb64921      movzx   ecx,byte ptr [r9+21h]
+fffff807`19e3c08b 418b411c        mov     eax,dword ptr [r9+1Ch]
+fffff807`19e3c08f 48c1e120        shl     rcx,20h
+fffff807`19e3c093 480bc8          or      rcx,rax
+fffff807`19e3c096 483bd1          cmp     rdx,rcx
+fffff807`19e3c099 7709            ja      nt!MiCheckForConflictingVad+0x4c (fffff807`19e3c0a4)  Branch
+
+nt!MiCheckForConflictingVad+0x43:
+fffff807`19e3c09b 4d85c9          test    r9,r9
+fffff807`19e3c09e 750a            jne     nt!MiCheckForConflictingVad+0x52 (fffff807`19e3c0aa)  Branch
+
+nt!MiCheckForConflictingVad+0x48:
+fffff807`19e3c0a0 33c0            xor     eax,eax
+fffff807`19e3c0a2 c3              ret
+
+nt!MiCheckForConflictingVad+0x4c:
+fffff807`19e3c0a4 4d8b4908        mov     r9,qword ptr [r9+8]
+fffff807`19e3c0a8 ebc2            jmp     nt!MiCheckForConflictingVad+0x14 (fffff807`19e3c06c)  Branch
+
+nt!MiCheckForConflictingVad+0x52:
+fffff807`19e3c0aa 498bc1          mov     rax,r9
+fffff807`19e3c0ad c3              ret

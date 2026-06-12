@@ -1,0 +1,251 @@
+kd> uf nt!MiInsertVadCharges
+nt!MiInsertVadCharges:
+fffff807`1a22c9c0 48895c2408      mov     qword ptr [rsp+8],rbx
+fffff807`1a22c9c5 48896c2410      mov     qword ptr [rsp+10h],rbp
+fffff807`1a22c9ca 4889742418      mov     qword ptr [rsp+18h],rsi
+fffff807`1a22c9cf 57              push    rdi
+fffff807`1a22c9d0 4154            push    r12
+fffff807`1a22c9d2 4155            push    r13
+fffff807`1a22c9d4 4156            push    r14
+fffff807`1a22c9d6 4157            push    r15
+fffff807`1a22c9d8 4883ec20        sub     rsp,20h
+fffff807`1a22c9dc 8b4118          mov     eax,dword ptr [rcx+18h]
+fffff807`1a22c9df 488bd9          mov     rbx,rcx
+fffff807`1a22c9e2 440fb67120      movzx   r14d,byte ptr [rcx+20h]
+fffff807`1a22c9e7 4533e4          xor     r12d,r12d
+fffff807`1a22c9ea 0fb66921        movzx   ebp,byte ptr [rcx+21h]
+fffff807`1a22c9ee 4533ff          xor     r15d,r15d
+fffff807`1a22c9f1 48c1e520        shl     rbp,20h
+fffff807`1a22c9f5 49bdfdffffff07000000 mov r13,7FFFFFFFDh
+fffff807`1a22c9ff 49c1e620        shl     r14,20h
+fffff807`1a22ca03 488bf2          mov     rsi,rdx
+fffff807`1a22ca06 4c0bf0          or      r14,rax
+fffff807`1a22ca09 8b411c          mov     eax,dword ptr [rcx+1Ch]
+fffff807`1a22ca0c 0fb64922        movzx   ecx,byte ptr [rcx+22h]
+fffff807`1a22ca10 480be8          or      rbp,rax
+fffff807`1a22ca13 8b4334          mov     eax,dword ptr [rbx+34h]
+fffff807`1a22ca16 0fbaf01f        btr     eax,1Fh
+fffff807`1a22ca1a 48c1e50c        shl     rbp,0Ch
+fffff807`1a22ca1e 48c1e11f        shl     rcx,1Fh
+fffff807`1a22ca22 4881cdff0f0000  or      rbp,0FFFh
+fffff807`1a22ca29 480bc8          or      rcx,rax
+fffff807`1a22ca2c 49c1e60c        shl     r14,0Ch
+fffff807`1a22ca30 493bcd          cmp     rcx,r13
+fffff807`1a22ca33 0f8314010000    jae     nt!MiInsertVadCharges+0x18d (fffff807`1a22cb4d)  Branch
+
+nt!MiInsertVadCharges+0x79:
+fffff807`1a22ca39 ba88000000      mov     edx,88h
+fffff807`1a22ca3e 488bce          mov     rcx,rsi
+fffff807`1a22ca41 e89aabc0ff      call    nt!PsChargeProcessNonPagedPoolQuota (fffff807`19e375e0)
+fffff807`1a22ca46 85c0            test    eax,eax
+fffff807`1a22ca48 0f88e1000000    js      nt!MiInsertVadCharges+0x16f (fffff807`1a22cb2f)  Branch
+
+nt!MiInsertVadCharges+0x8e:
+fffff807`1a22ca4e f7433000001000  test    dword ptr [rbx+30h],100000h
+fffff807`1a22ca55 755d            jne     nt!MiInsertVadCharges+0xf4 (fffff807`1a22cab4)  Branch
+
+nt!MiInsertVadCharges+0x97:
+fffff807`1a22ca57 488bcb          mov     rcx,rbx
+fffff807`1a22ca5a e81197c5ff      call    nt!MiVadPureReserve (fffff807`19e86170)
+fffff807`1a22ca5f 85c0            test    eax,eax
+fffff807`1a22ca61 7551            jne     nt!MiInsertVadCharges+0xf4 (fffff807`1a22cab4)  Branch
+
+nt!MiInsertVadCharges+0xa3:
+fffff807`1a22ca63 8b431c          mov     eax,dword ptr [rbx+1Ch]
+fffff807`1a22ca66 440fb64321      movzx   r8d,byte ptr [rbx+21h]
+fffff807`1a22ca6b 0fb64b20        movzx   ecx,byte ptr [rbx+20h]
+fffff807`1a22ca6f 49c1e020        shl     r8,20h
+fffff807`1a22ca73 4c0bc0          or      r8,rax
+fffff807`1a22ca76 48c1e120        shl     rcx,20h
+fffff807`1a22ca7a 8b4318          mov     eax,dword ptr [rbx+18h]
+fffff807`1a22ca7d 480bc8          or      rcx,rax
+fffff807`1a22ca80 4c2bc1          sub     r8,rcx
+fffff807`1a22ca83 483b3596896d00  cmp     rsi,qword ptr [nt!PsInitialSystemProcess (fffff807`1a905420)]
+fffff807`1a22ca8a 4e8d24c508000000 lea     r12,[r8*8+8]
+fffff807`1a22ca92 7420            je      nt!MiInsertVadCharges+0xf4 (fffff807`1a22cab4)  Branch
+
+nt!MiInsertVadCharges+0xd4:
+fffff807`1a22ca94 488b8e68050000  mov     rcx,qword ptr [rsi+568h]
+fffff807`1a22ca9b 458d4701        lea     r8d,[r15+1]
+fffff807`1a22ca9f 4d8bcc          mov     r9,r12
+fffff807`1a22caa2 488bd6          mov     rdx,rsi
+fffff807`1a22caa5 e8168bc5ff      call    nt!PspChargeQuota (fffff807`19e855c0)
+fffff807`1a22caaa 8bf8            mov     edi,eax
+fffff807`1a22caac 85c0            test    eax,eax
+fffff807`1a22caae 0f887c481d00    js      nt!MiInsertVadCharges+0x1d4970 (fffff807`1a401330)  Branch
+
+nt!MiInsertVadCharges+0xf4:
+fffff807`1a22cab4 8b4b30          mov     ecx,dword ptr [rbx+30h]
+fffff807`1a22cab7 8bc1            mov     eax,ecx
+fffff807`1a22cab9 83e070          and     eax,70h
+fffff807`1a22cabc 83f830          cmp     eax,30h
+fffff807`1a22cabf 0f847f481d00    je      nt!MiInsertVadCharges+0x1d4984 (fffff807`1a401344)  Branch
+
+nt!MiInsertVadCharges+0x105:
+fffff807`1a22cac5 83f840          cmp     eax,40h
+fffff807`1a22cac8 0f8497000000    je      nt!MiInsertVadCharges+0x1a5 (fffff807`1a22cb65)  Branch
+
+nt!MiInsertVadCharges+0x10e:
+fffff807`1a22cace 83f810          cmp     eax,10h
+fffff807`1a22cad1 0f848e000000    je      nt!MiInsertVadCharges+0x1a5 (fffff807`1a22cb65)  Branch
+
+nt!MiInsertVadCharges+0x117:
+fffff807`1a22cad7 8b4334          mov     eax,dword ptr [rbx+34h]
+fffff807`1a22cada 0fb64b22        movzx   ecx,byte ptr [rbx+22h]
+fffff807`1a22cade 0fbaf01f        btr     eax,1Fh
+fffff807`1a22cae2 48c1e11f        shl     rcx,1Fh
+fffff807`1a22cae6 480bc8          or      rcx,rax
+fffff807`1a22cae9 493bcd          cmp     rcx,r13
+fffff807`1a22caec 7366            jae     nt!MiInsertVadCharges+0x194 (fffff807`1a22cb54)  Branch
+
+nt!MiInsertVadCharges+0x12e:
+fffff807`1a22caee 65488b3c2588010000 mov   rdi,qword ptr gs:[188h]
+fffff807`1a22caf7 488bd6          mov     rdx,rsi
+fffff807`1a22cafa 488bcf          mov     rcx,rdi
+fffff807`1a22cafd e8aaaac0ff      call    nt!LOCK_PAGE_TABLE_COMMITMENT (fffff807`19e375ac)
+fffff807`1a22cb02 4c8bc5          mov     r8,rbp
+fffff807`1a22cb05 498bd6          mov     rdx,r14
+fffff807`1a22cb08 488bcb          mov     rcx,rbx
+fffff807`1a22cb0b e8e0820500      call    nt!MiCommitPageTablesForVad (fffff807`1a284df0)
+fffff807`1a22cb10 488bd6          mov     rdx,rsi
+fffff807`1a22cb13 488bcf          mov     rcx,rdi
+fffff807`1a22cb16 8be8            mov     ebp,eax
+fffff807`1a22cb18 e88ba8c0ff      call    nt!UNLOCK_PAGE_TABLE_COMMITMENT (fffff807`19e373a8)
+fffff807`1a22cb1d 85ed            test    ebp,ebp
+fffff807`1a22cb1f 0f885b481d00    js      nt!MiInsertVadCharges+0x1d49c0 (fffff807`1a401380)  Branch
+
+nt!MiInsertVadCharges+0x165:
+fffff807`1a22cb25 488bcb          mov     rcx,rbx
+fffff807`1a22cb28 e883000000      call    nt!MiSetVadBits (fffff807`1a22cbb0)
+fffff807`1a22cb2d 33c0            xor     eax,eax
+
+nt!MiInsertVadCharges+0x16f:
+fffff807`1a22cb2f 488b5c2450      mov     rbx,qword ptr [rsp+50h]
+fffff807`1a22cb34 488b6c2458      mov     rbp,qword ptr [rsp+58h]
+fffff807`1a22cb39 488b742460      mov     rsi,qword ptr [rsp+60h]
+fffff807`1a22cb3e 4883c420        add     rsp,20h
+fffff807`1a22cb42 415f            pop     r15
+fffff807`1a22cb44 415e            pop     r14
+fffff807`1a22cb46 415d            pop     r13
+fffff807`1a22cb48 415c            pop     r12
+fffff807`1a22cb4a 5f              pop     rdi
+fffff807`1a22cb4b c3              ret
+
+nt!MiInsertVadCharges+0x18d:
+fffff807`1a22cb4d 7588            jne     nt!MiInsertVadCharges+0x117 (fffff807`1a22cad7)  Branch
+
+nt!MiInsertVadCharges+0x18f:
+fffff807`1a22cb4f e980481d00      jmp     nt!MiInsertVadCharges+0x1d4a14 (fffff807`1a4013d4)  Branch
+
+nt!MiInsertVadCharges+0x194:
+fffff807`1a22cb54 48b8feffffff07000000 mov rax,7FFFFFFFEh
+fffff807`1a22cb5e 483bc8          cmp     rcx,rax
+fffff807`1a22cb61 748b            je      nt!MiInsertVadCharges+0x12e (fffff807`1a22caee)  Branch
+
+nt!MiInsertVadCharges+0x1a3:
+fffff807`1a22cb63 ebc0            jmp     nt!MiInsertVadCharges+0x165 (fffff807`1a22cb25)  Branch
+
+nt!MiInsertVadCharges+0x1a5:
+fffff807`1a22cb65 4533c0          xor     r8d,r8d
+fffff807`1a22cb68 488bd5          mov     rdx,rbp
+fffff807`1a22cb6b 498bce          mov     rcx,r14
+fffff807`1a22cb6e e8493b0b00      call    nt!MiResidentPagesForSpan (fffff807`1a2e06bc)
+
+nt!MiInsertVadCharges+0x1b3:
+fffff807`1a22cb73 4c8bf8          mov     r15,rax
+fffff807`1a22cb76 4885c0          test    rax,rax
+fffff807`1a22cb79 0f8458ffffff    je      nt!MiInsertVadCharges+0x117 (fffff807`1a22cad7)  Branch
+
+nt!MiInsertVadCharges+0x1bf:
+fffff807`1a22cb7f 488bce          mov     rcx,rsi
+fffff807`1a22cb82 e89989c5ff      call    nt!MiGetProcessPartition (fffff807`19e85520)
+fffff807`1a22cb87 498bd7          mov     rdx,r15
+fffff807`1a22cb8a 488bc8          mov     rcx,rax
+fffff807`1a22cb8d 41b880000000    mov     r8d,80h
+fffff807`1a22cb93 e89c06d2ff      call    nt!MiChargeResident (fffff807`19f4d234)
+fffff807`1a22cb98 85c0            test    eax,eax
+fffff807`1a22cb9a 0f8537ffffff    jne     nt!MiInsertVadCharges+0x117 (fffff807`1a22cad7)  Branch
+
+nt!MiInsertVadCharges+0x1e0:
+fffff807`1a22cba0 e9d3471d00      jmp     nt!MiInsertVadCharges+0x1d49b8 (fffff807`1a401378)  Branch
+
+nt!MiInsertVadCharges+0x1d4970:
+fffff807`1a401330 ba88000000      mov     edx,88h
+fffff807`1a401335 488bce          mov     rcx,rsi
+fffff807`1a401338 e80381a3ff      call    nt!PsReturnProcessNonPagedPoolQuota (fffff807`19e39440)
+fffff807`1a40133d 8bc7            mov     eax,edi
+fffff807`1a40133f e9ebb7e2ff      jmp     nt!MiInsertVadCharges+0x16f (fffff807`1a22cb2f)  Branch
+
+nt!MiInsertVadCharges+0x1d4984:
+fffff807`1a401344 81e100001003    and     ecx,3100000h
+fffff807`1a40134a 81f900001002    cmp     ecx,2100000h
+fffff807`1a401350 7504            jne     nt!MiInsertVadCharges+0x1d4996 (fffff807`1a401356)  Branch
+
+nt!MiInsertVadCharges+0x1d4992:
+fffff807`1a401352 33c0            xor     eax,eax
+fffff807`1a401354 eb11            jmp     nt!MiInsertVadCharges+0x1d49a7 (fffff807`1a401367)  Branch
+
+nt!MiInsertVadCharges+0x1d4996:
+fffff807`1a401356 ba00010000      mov     edx,100h
+fffff807`1a40135b 488bcb          mov     rcx,rbx
+fffff807`1a40135e e87183a5ff      call    nt!MiLocateVadEvent (fffff807`19e596d4)
+fffff807`1a401363 4883c008        add     rax,8
+
+nt!MiInsertVadCharges+0x1d49a7:
+fffff807`1a401367 488bd0          mov     rdx,rax
+fffff807`1a40136a 488bcb          mov     rcx,rbx
+fffff807`1a40136d e8cefd0d00      call    nt!MiComputeAweCharges (fffff807`1a4e1140)
+fffff807`1a401372 90              nop
+fffff807`1a401373 e9fbb7e2ff      jmp     nt!MiInsertVadCharges+0x1b3 (fffff807`1a22cb73)  Branch
+
+nt!MiInsertVadCharges+0x1d49b8:
+fffff807`1a401378 4533ff          xor     r15d,r15d
+fffff807`1a40137b bd9a0000c0      mov     ebp,0C000009Ah
+
+nt!MiInsertVadCharges+0x1d49c0:
+fffff807`1a401380 8b4b34          mov     ecx,dword ptr [rbx+34h]
+fffff807`1a401383 440fb64322      movzx   r8d,byte ptr [rbx+22h]
+fffff807`1a401388 0fbaf11f        btr     ecx,1Fh
+fffff807`1a40138c 49c1e01f        shl     r8,1Fh
+fffff807`1a401390 4c0bc1          or      r8,rcx
+fffff807`1a401393 4d3bc5          cmp     r8,r13
+fffff807`1a401396 730d            jae     nt!MiInsertVadCharges+0x1d49e5 (fffff807`1a4013a5)  Branch
+
+nt!MiInsertVadCharges+0x1d49d8:
+fffff807`1a401398 ba88000000      mov     edx,88h
+fffff807`1a40139d 488bce          mov     rcx,rsi
+fffff807`1a4013a0 e89b80a3ff      call    nt!PsReturnProcessNonPagedPoolQuota (fffff807`19e39440)
+
+nt!MiInsertVadCharges+0x1d49e5:
+fffff807`1a4013a5 4d85e4          test    r12,r12
+fffff807`1a4013a8 740b            je      nt!MiInsertVadCharges+0x1d49f5 (fffff807`1a4013b5)  Branch
+
+nt!MiInsertVadCharges+0x1d49ea:
+fffff807`1a4013aa 498bd4          mov     rdx,r12
+fffff807`1a4013ad 488bce          mov     rcx,rsi
+fffff807`1a4013b0 e8bb80a3ff      call    nt!PsReturnProcessPagedPoolQuota (fffff807`19e39470)
+
+nt!MiInsertVadCharges+0x1d49f5:
+fffff807`1a4013b5 4d85ff          test    r15,r15
+fffff807`1a4013b8 7413            je      nt!MiInsertVadCharges+0x1d4a0d (fffff807`1a4013cd)  Branch
+
+nt!MiInsertVadCharges+0x1d49fa:
+fffff807`1a4013ba 488bce          mov     rcx,rsi
+fffff807`1a4013bd e85e41a8ff      call    nt!MiGetProcessPartition (fffff807`19e85520)
+fffff807`1a4013c2 498bd7          mov     rdx,r15
+fffff807`1a4013c5 488bc8          mov     rcx,rax
+fffff807`1a4013c8 e8afaca6ff      call    nt!MiReturnResident (fffff807`19e6c07c)
+
+nt!MiInsertVadCharges+0x1d4a0d:
+fffff807`1a4013cd 8bc5            mov     eax,ebp
+fffff807`1a4013cf e95bb7e2ff      jmp     nt!MiInsertVadCharges+0x16f (fffff807`1a22cb2f)  Branch
+
+nt!MiInsertVadCharges+0x1d4a14:
+fffff807`1a4013d4 ba40000000      mov     edx,40h
+fffff807`1a4013d9 488bce          mov     rcx,rsi
+fffff807`1a4013dc e8ff61a3ff      call    nt!PsChargeProcessNonPagedPoolQuota (fffff807`19e375e0)
+fffff807`1a4013e1 85c0            test    eax,eax
+fffff807`1a4013e3 0f8846b7e2ff    js      nt!MiInsertVadCharges+0x16f (fffff807`1a22cb2f)  Branch
+
+nt!MiInsertVadCharges+0x1d4a29:
+fffff807`1a4013e9 e9e9b6e2ff      jmp     nt!MiInsertVadCharges+0x117 (fffff807`1a22cad7)  Branch

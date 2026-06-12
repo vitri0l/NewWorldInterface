@@ -1,0 +1,167 @@
+kd> uf nt!MiRemoveVadCharges
+nt!MiRemoveVadCharges:
+fffff807`1a22d7e0 488bc4          mov     rax,rsp
+fffff807`1a22d7e3 53              push    rbx
+fffff807`1a22d7e4 4156            push    r14
+fffff807`1a22d7e6 4883ec68        sub     rsp,68h
+fffff807`1a22d7ea 48896808        mov     qword ptr [rax+8],rbp
+fffff807`1a22d7ee 0f57c0          xorps   xmm0,xmm0
+fffff807`1a22d7f1 48897010        mov     qword ptr [rax+10h],rsi
+fffff807`1a22d7f5 488bd9          mov     rbx,rcx
+fffff807`1a22d7f8 4c8978e8        mov     qword ptr [rax-18h],r15
+fffff807`1a22d7fc 488bca          mov     rcx,rdx
+fffff807`1a22d7ff 4533ff          xor     r15d,r15d
+fffff807`1a22d802 488bf2          mov     rsi,rdx
+fffff807`1a22d805 4c8978b8        mov     qword ptr [rax-48h],r15
+fffff807`1a22d809 4c8978e0        mov     qword ptr [rax-20h],r15
+fffff807`1a22d80d f30f7f40d0      movdqu  xmmword ptr [rax-30h],xmm0
+fffff807`1a22d812 0f1140a8        movups  xmmword ptr [rax-58h],xmm0
+fffff807`1a22d816 e8057dc5ff      call    nt!MiGetProcessPartition (fffff807`19e85520)
+fffff807`1a22d81b 488bcb          mov     rcx,rbx
+fffff807`1a22d81e 4c8bf0          mov     r14,rax
+fffff807`1a22d821 458bc7          mov     r8d,r15d
+fffff807`1a22d824 418bef          mov     ebp,r15d
+fffff807`1a22d827 e898bac0ff      call    nt!MiIsVadLarge (fffff807`19e392c4)
+fffff807`1a22d82c 85c0            test    eax,eax
+fffff807`1a22d82e 0f85e83d1d00    jne     nt!MiRemoveVadCharges+0x1d3e3c (fffff807`1a40161c)  Branch
+
+nt!MiRemoveVadCharges+0x54:
+fffff807`1a22d834 8b4b34          mov     ecx,dword ptr [rbx+34h]
+fffff807`1a22d837 48b8fdffffff07000000 mov rax,7FFFFFFFDh
+fffff807`1a22d841 440fb64b22      movzx   r9d,byte ptr [rbx+22h]
+fffff807`1a22d846 0fbaf11f        btr     ecx,1Fh
+fffff807`1a22d84a 49c1e11f        shl     r9,1Fh
+fffff807`1a22d84e 4c0bc9          or      r9,rcx
+fffff807`1a22d851 4c3bc8          cmp     r9,rax
+fffff807`1a22d854 7357            jae     nt!MiRemoveVadCharges+0xcd (fffff807`1a22d8ad)  Branch
+
+nt!MiRemoveVadCharges+0x76:
+fffff807`1a22d856 4585c0          test    r8d,r8d
+fffff807`1a22d859 7552            jne     nt!MiRemoveVadCharges+0xcd (fffff807`1a22d8ad)  Branch
+
+nt!MiRemoveVadCharges+0x7b:
+fffff807`1a22d85b 488b4308        mov     rax,qword ptr [rbx+8]
+fffff807`1a22d85f 4c8d442420      lea     r8,[rsp+20h]
+fffff807`1a22d864 4889442438      mov     qword ptr [rsp+38h],rax
+fffff807`1a22d869 488d542430      lea     rdx,[rsp+30h]
+fffff807`1a22d86e 488b03          mov     rax,qword ptr [rbx]
+fffff807`1a22d871 498bc9          mov     rcx,r9
+fffff807`1a22d874 4889442440      mov     qword ptr [rsp+40h],rax
+fffff807`1a22d879 4889bc2490000000 mov     qword ptr [rsp+90h],rdi
+fffff807`1a22d881 e8feb9c0ff      call    nt!MiFillCommitReturnInfo (fffff807`19e39284)
+fffff807`1a22d886 488b7c2420      mov     rdi,qword ptr [rsp+20h]
+fffff807`1a22d88b 4885ff          test    rdi,rdi
+fffff807`1a22d88e 7558            jne     nt!MiRemoveVadCharges+0x108 (fffff807`1a22d8e8)  Branch
+
+nt!MiRemoveVadCharges+0xb0:
+fffff807`1a22d890 488b542428      mov     rdx,qword ptr [rsp+28h]
+fffff807`1a22d895 488bbc2490000000 mov     rdi,qword ptr [rsp+90h]
+fffff807`1a22d89d 4885d2          test    rdx,rdx
+fffff807`1a22d8a0 755a            jne     nt!MiRemoveVadCharges+0x11c (fffff807`1a22d8fc)  Branch
+
+nt!MiRemoveVadCharges+0xc2:
+fffff807`1a22d8a2 81633400000080  and     dword ptr [rbx+34h],80000000h
+fffff807`1a22d8a9 44887b22        mov     byte ptr [rbx+22h],r15b
+
+nt!MiRemoveVadCharges+0xcd:
+fffff807`1a22d8ad 8b4330          mov     eax,dword ptr [rbx+30h]
+fffff807`1a22d8b0 4c8b7c2460      mov     r15,qword ptr [rsp+60h]
+fffff807`1a22d8b5 83e070          and     eax,70h
+fffff807`1a22d8b8 488bb42488000000 mov     rsi,qword ptr [rsp+88h]
+fffff807`1a22d8c0 488bac2480000000 mov     rbp,qword ptr [rsp+80h]
+fffff807`1a22d8c8 83f840          cmp     eax,40h
+fffff807`1a22d8cb 745a            je      nt!MiRemoveVadCharges+0x147 (fffff807`1a22d927)  Branch
+
+nt!MiRemoveVadCharges+0xed:
+fffff807`1a22d8cd 83f810          cmp     eax,10h
+fffff807`1a22d8d0 7455            je      nt!MiRemoveVadCharges+0x147 (fffff807`1a22d927)  Branch
+
+nt!MiRemoveVadCharges+0xf2:
+fffff807`1a22d8d2 ba01000000      mov     edx,1
+fffff807`1a22d8d7 488bcb          mov     rcx,rbx
+fffff807`1a22d8da e8a1000000      call    nt!MiReleaseVadEventBlocks (fffff807`1a22d980)
+fffff807`1a22d8df 4883c468        add     rsp,68h
+fffff807`1a22d8e3 415e            pop     r14
+fffff807`1a22d8e5 5b              pop     rbx
+fffff807`1a22d8e6 c3              ret
+
+nt!MiRemoveVadCharges+0x108:
+fffff807`1a22d8e8 488bd7          mov     rdx,rdi
+fffff807`1a22d8eb 488bce          mov     rcx,rsi
+fffff807`1a22d8ee e8ddbac0ff      call    nt!MiReturnFullProcessCharges (fffff807`19e393d0)
+fffff807`1a22d8f3 85ed            test    ebp,ebp
+fffff807`1a22d8f5 7499            je      nt!MiRemoveVadCharges+0xb0 (fffff807`1a22d890)  Branch
+
+nt!MiRemoveVadCharges+0x117:
+fffff807`1a22d8f7 e9443d1d00      jmp     nt!MiRemoveVadCharges+0x1d3e60 (fffff807`1a401640)  Branch
+
+nt!MiRemoveVadCharges+0x11c:
+fffff807`1a22d8fc 488d8e80060000  lea     rcx,[rsi+680h]
+fffff807`1a22d903 e8287ec5ff      call    nt!MiGetSharedVm (fffff807`19e85730)
+fffff807`1a22d908 488b4808        mov     rcx,qword ptr [rax+8]
+fffff807`1a22d90c 4885c9          test    rcx,rcx
+fffff807`1a22d90f 0f853c3d1d00    jne     nt!MiRemoveVadCharges+0x1d3e71 (fffff807`1a401651)  Branch
+
+nt!MiRemoveVadCharges+0x135:
+fffff807`1a22d915 4885d2          test    rdx,rdx
+fffff807`1a22d918 7488            je      nt!MiRemoveVadCharges+0xc2 (fffff807`1a22d8a2)  Branch
+
+nt!MiRemoveVadCharges+0x13a:
+fffff807`1a22d91a 498bce          mov     rcx,r14
+fffff807`1a22d91d e8deb9c0ff      call    nt!MiReturnCommit (fffff807`19e39300)
+fffff807`1a22d922 e97bffffff      jmp     nt!MiRemoveVadCharges+0xc2 (fffff807`1a22d8a2)  Branch
+
+nt!MiRemoveVadCharges+0x147:
+fffff807`1a22d927 8b431c          mov     eax,dword ptr [rbx+1Ch]
+fffff807`1a22d92a 4533c0          xor     r8d,r8d
+fffff807`1a22d92d 0fb65321        movzx   edx,byte ptr [rbx+21h]
+fffff807`1a22d931 0fb64b20        movzx   ecx,byte ptr [rbx+20h]
+fffff807`1a22d935 48c1e220        shl     rdx,20h
+fffff807`1a22d939 480bd0          or      rdx,rax
+fffff807`1a22d93c 48c1e120        shl     rcx,20h
+fffff807`1a22d940 8b4318          mov     eax,dword ptr [rbx+18h]
+fffff807`1a22d943 480bc8          or      rcx,rax
+fffff807`1a22d946 48c1e20c        shl     rdx,0Ch
+fffff807`1a22d94a 48c1e10c        shl     rcx,0Ch
+fffff807`1a22d94e 4881caff0f0000  or      rdx,0FFFh
+fffff807`1a22d955 e8622d0b00      call    nt!MiResidentPagesForSpan (fffff807`1a2e06bc)
+fffff807`1a22d95a 4885c0          test    rax,rax
+fffff807`1a22d95d 0f846fffffff    je      nt!MiRemoveVadCharges+0xf2 (fffff807`1a22d8d2)  Branch
+
+nt!MiRemoveVadCharges+0x183:
+fffff807`1a22d963 488bd0          mov     rdx,rax
+fffff807`1a22d966 498bce          mov     rcx,r14
+fffff807`1a22d969 e80ee7c3ff      call    nt!MiReturnResident (fffff807`19e6c07c)
+fffff807`1a22d96e e95fffffff      jmp     nt!MiRemoveVadCharges+0xf2 (fffff807`1a22d8d2)  Branch
+
+nt!MiRemoveVadCharges+0x1d3e3c:
+fffff807`1a40161c 8b4b30          mov     ecx,dword ptr [rbx+30h]
+fffff807`1a40161f 83e170          and     ecx,70h
+fffff807`1a401622 80f950          cmp     cl,50h
+fffff807`1a401625 0f8409c2e2ff    je      nt!MiRemoveVadCharges+0x54 (fffff807`1a22d834)  Branch
+
+nt!MiRemoveVadCharges+0x1d3e4b:
+fffff807`1a40162b 488bcb          mov     rcx,rbx
+fffff807`1a40162e bd01000000      mov     ebp,1
+fffff807`1a401633 e8647ca3ff      call    nt!MiVadCommitCrossPartition (fffff807`19e3929c)
+fffff807`1a401638 448bc0          mov     r8d,eax
+fffff807`1a40163b e9f4c1e2ff      jmp     nt!MiRemoveVadCharges+0x54 (fffff807`1a22d834)  Branch
+
+nt!MiRemoveVadCharges+0x1d3e60:
+fffff807`1a401640 48f7df          neg     rdi
+fffff807`1a401643 f0480fc1bef0070000 lock xadd qword ptr [rsi+7F0h],rdi
+fffff807`1a40164c e93fc2e2ff      jmp     nt!MiRemoveVadCharges+0xb0 (fffff807`1a22d890)  Branch
+
+nt!MiRemoveVadCharges+0x1d3e71:
+fffff807`1a401651 483bd1          cmp     rdx,rcx
+fffff807`1a401654 760c            jbe     nt!MiRemoveVadCharges+0x1d3e82 (fffff807`1a401662)  Branch
+
+nt!MiRemoveVadCharges+0x1d3e76:
+fffff807`1a401656 482bd1          sub     rdx,rcx
+fffff807`1a401659 4c897808        mov     qword ptr [rax+8],r15
+fffff807`1a40165d e9b3c2e2ff      jmp     nt!MiRemoveVadCharges+0x135 (fffff807`1a22d915)  Branch
+
+nt!MiRemoveVadCharges+0x1d3e82:
+fffff807`1a401662 482bca          sub     rcx,rdx
+fffff807`1a401665 48894808        mov     qword ptr [rax+8],rcx
+fffff807`1a401669 e934c2e2ff      jmp     nt!MiRemoveVadCharges+0xc2 (fffff807`1a22d8a2)  Branch

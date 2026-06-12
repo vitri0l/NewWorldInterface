@@ -1,0 +1,677 @@
+nt!MiCreateNewSection:
+fffff807`68b0cec4 48895c2418      mov     qword ptr [rsp+18h],rbx
+fffff807`68b0cec9 55              push    rbp
+fffff807`68b0ceca 56              push    rsi
+fffff807`68b0cecb 57              push    rdi
+fffff807`68b0cecc 4154            push    r12
+fffff807`68b0cece 4155            push    r13
+fffff807`68b0ced0 4156            push    r14
+fffff807`68b0ced2 4157            push    r15
+fffff807`68b0ced4 488d6c24e0      lea     rbp,[rsp-20h]
+fffff807`68b0ced9 4881ec20010000  sub     rsp,120h
+fffff807`68b0cee0 488b0509845000  mov     rax,qword ptr [nt!_security_cookie (fffff807`690152f0)]
+fffff807`68b0cee7 4833c4          xor     rax,rsp
+fffff807`68b0ceea 48894510        mov     qword ptr [rbp+10h],rax
+fffff807`68b0ceee 4533f6          xor     r14d,r14d
+fffff807`68b0cef1 4c8bea          mov     r13,rdx
+fffff807`68b0cef4 488bd9          mov     rbx,rcx
+fffff807`68b0cef7 4c89742478      mov     qword ptr [rsp+78h],r14
+fffff807`68b0cefc 33d2            xor     edx,edx
+fffff807`68b0cefe 4c897580        mov     qword ptr [rbp-80h],r14
+fffff807`68b0cf02 488d4da0        lea     rcx,[rbp-60h]
+fffff807`68b0cf06 458d4670        lea     r8d,[r14+70h]
+fffff807`68b0cf0a e8f173d0ff      call    nt!memset (fffff807`68814300)
+fffff807`68b0cf0f 488bbbb0000000  mov     rdi,qword ptr [rbx+0B0h]
+fffff807`68b0cf16 8a4318          mov     al,byte ptr [rbx+18h]
+fffff807`68b0cf19 4c8b6338        mov     r12,qword ptr [rbx+38h]
+fffff807`68b0cf1d 448b7b10        mov     r15d,dword ptr [rbx+10h]
+fffff807`68b0cf21 488bb398000000  mov     rsi,qword ptr [rbx+98h]
+fffff807`68b0cf28 88442460        mov     byte ptr [rsp+60h],al
+fffff807`68b0cf2c 4488742463      mov     byte ptr [rsp+63h],r14b
+fffff807`68b0cf31 4c89642468      mov     qword ptr [rsp+68h],r12
+fffff807`68b0cf36 4489742470      mov     dword ptr [rsp+70h],r14d
+fffff807`68b0cf3b 4488742462      mov     byte ptr [rsp+62h],r14b
+fffff807`68b0cf40 4488742464      mov     byte ptr [rsp+64h],r14b
+fffff807`68b0cf45 4489742474      mov     dword ptr [rsp+74h],r14d
+fffff807`68b0cf4a 4885ff          test    rdi,rdi
+fffff807`68b0cf4d 7405            je      nt!MiCreateNewSection+0x90 (fffff807`68b0cf54)  Branch
+
+nt!MiCreateNewSection+0x8b:
+fffff807`68b0cf4f 488b3f          mov     rdi,qword ptr [rdi]
+fffff807`68b0cf52 eb07            jmp     nt!MiCreateNewSection+0x97 (fffff807`68b0cf5b)  Branch
+
+nt!MiCreateNewSection+0x90:
+fffff807`68b0cf54 488d3da56c5400  lea     rdi,[nt!MiSystemPartition (fffff807`69053c00)]
+
+nt!MiCreateNewSection+0x97:
+fffff807`68b0cf5b 488bcf          mov     rcx,rdi
+fffff807`68b0cf5e e81d060000      call    nt!MiEnablePartitionMappedWrites (fffff807`68b0d580)
+fffff807`68b0cf63 448bf0          mov     r14d,eax
+fffff807`68b0cf66 85c0            test    eax,eax
+fffff807`68b0cf68 792b            jns     nt!MiCreateNewSection+0xd1 (fffff807`68b0cf95)  Branch
+
+nt!MiCreateNewSection+0xa6:
+fffff807`68b0cf6a 8b13            mov     edx,dword ptr [rbx]
+fffff807`68b0cf6c be02000000      mov     esi,2
+fffff807`68b0cf71 4084d6          test    sil,dl
+fffff807`68b0cf74 7417            je      nt!MiCreateNewSection+0xc9 (fffff807`68b0cf8d)  Branch
+
+nt!MiCreateNewSection+0xb2:
+fffff807`68b0cf76 488b8bb8000000  mov     rcx,qword ptr [rbx+0B8h]
+fffff807`68b0cf7d e83e5fb9ff      call    nt!IoSetTopLevelIrp (fffff807`686a2ec0)
+fffff807`68b0cf82 498bcc          mov     rcx,r12
+fffff807`68b0cf85 e81663f7ff      call    nt!FsRtlReleaseFile (fffff807`68a832a0)
+fffff807`68b0cf8a 8323fd          and     dword ptr [rbx],0FFFFFFFDh
+
+nt!MiCreateNewSection+0xc9:
+fffff807`68b0cf8d 418bc6          mov     eax,r14d
+fffff807`68b0cf90 e9a1050000      jmp     nt!MiCreateNewSection+0x672 (fffff807`68b0d536)  Branch
+
+nt!MiCreateNewSection+0xd1:
+fffff807`68b0cf95 4883658800      and     qword ptr [rbp-78h],0
+fffff807`68b0cf9a 458be7          mov     r12d,r15d
+fffff807`68b0cf9d 8b83ac000000    mov     eax,dword ptr [rbx+0ACh]
+fffff807`68b0cfa3 488bd7          mov     rdx,rdi
+fffff807`68b0cfa6 4c8b742468      mov     r14,qword ptr [rsp+68h]
+fffff807`68b0cfab 4181e400000001  and     r12d,1000000h
+fffff807`68b0cfb2 7436            je      nt!MiCreateNewSection+0x126 (fffff807`68b0cfea)  Branch
+
+nt!MiCreateNewSection+0xf0:
+fffff807`68b0cfb4 448b0b          mov     r9d,dword ptr [rbx]
+fffff807`68b0cfb7 488d4c2474      lea     rcx,[rsp+74h]
+fffff807`68b0cfbc 48894c2438      mov     qword ptr [rsp+38h],rcx
+fffff807`68b0cfc1 448bc0          mov     r8d,eax
+fffff807`68b0cfc4 488d4da0        lea     rcx,[rbp-60h]
+fffff807`68b0cfc8 48894c2430      mov     qword ptr [rsp+30h],rcx
+fffff807`68b0cfcd 488d4d88        lea     rcx,[rbp-78h]
+fffff807`68b0cfd1 48894c2428      mov     qword ptr [rsp+28h],rcx
+fffff807`68b0cfd6 488d4c2478      lea     rcx,[rsp+78h]
+fffff807`68b0cfdb 48894c2420      mov     qword ptr [rsp+20h],rcx
+fffff807`68b0cfe0 498bce          mov     rcx,r14
+fffff807`68b0cfe3 e8c0e4ffff      call    nt!MiCreateImageFileMap (fffff807`68b0b4a8)
+fffff807`68b0cfe8 eb26            jmp     nt!MiCreateNewSection+0x14c (fffff807`68b0d010)  Branch
+
+nt!MiCreateNewSection+0x126:
+fffff807`68b0cfea 8b0b            mov     ecx,dword ptr [rbx]
+fffff807`68b0cfec 4c8d442478      lea     r8,[rsp+78h]
+fffff807`68b0cff1 894c2438        mov     dword ptr [rsp+38h],ecx
+fffff807`68b0cff5 4c8bce          mov     r9,rsi
+fffff807`68b0cff8 89442430        mov     dword ptr [rsp+30h],eax
+fffff807`68b0cffc 498bce          mov     rcx,r14
+fffff807`68b0cfff 8b431c          mov     eax,dword ptr [rbx+1Ch]
+fffff807`68b0d002 44897c2428      mov     dword ptr [rsp+28h],r15d
+fffff807`68b0d007 89442420        mov     dword ptr [rsp+20h],eax
+fffff807`68b0d00b e8e0060000      call    nt!MiCreateDataFileMap (fffff807`68b0d6f0)
+
+nt!MiCreateNewSection+0x14c:
+fffff807`68b0d010 8bf8            mov     edi,eax
+fffff807`68b0d012 85c0            test    eax,eax
+fffff807`68b0d014 792c            jns     nt!MiCreateNewSection+0x17e (fffff807`68b0d042)  Branch
+
+nt!MiCreateNewSection+0x152:
+fffff807`68b0d016 8b03            mov     eax,dword ptr [rbx]
+fffff807`68b0d018 be02000000      mov     esi,2
+fffff807`68b0d01d 4084c6          test    sil,al
+fffff807`68b0d020 0f840e050000    je      nt!MiCreateNewSection+0x670 (fffff807`68b0d534)  Branch
+
+nt!MiCreateNewSection+0x162:
+fffff807`68b0d026 488b8bb8000000  mov     rcx,qword ptr [rbx+0B8h]
+fffff807`68b0d02d e88e5eb9ff      call    nt!IoSetTopLevelIrp (fffff807`686a2ec0)
+fffff807`68b0d032 498bce          mov     rcx,r14
+fffff807`68b0d035 e86662f7ff      call    nt!FsRtlReleaseFile (fffff807`68a832a0)
+fffff807`68b0d03a 8323fd          and     dword ptr [rbx],0FFFFFFFDh
+fffff807`68b0d03d e9f2040000      jmp     nt!MiCreateNewSection+0x670 (fffff807`68b0d534)  Branch
+
+nt!MiCreateNewSection+0x17e:
+fffff807`68b0d042 4c8b742478      mov     r14,qword ptr [rsp+78h]
+fffff807`68b0d047 4883c9ff        or      rcx,0FFFFFFFFFFFFFFFFh
+fffff807`68b0d04b 4d897500        mov     qword ptr [r13],r14
+fffff807`68b0d04f 4885f6          test    rsi,rsi
+fffff807`68b0d052 7517            jne     nt!MiCreateNewSection+0x1a7 (fffff807`68b0d06b)  Branch
+
+nt!MiCreateNewSection+0x190:
+fffff807`68b0d054 488bc1          mov     rax,rcx
+fffff807`68b0d057 f0490fb14e18    lock cmpxchg qword ptr [r14+18h],rcx
+fffff807`68b0d05d 4c8b742478      mov     r14,qword ptr [rsp+78h]
+fffff807`68b0d062 48898380000000  mov     qword ptr [rbx+80h],rax
+fffff807`68b0d069 eb07            jmp     nt!MiCreateNewSection+0x1ae (fffff807`68b0d072)  Branch
+
+nt!MiCreateNewSection+0x1a7:
+fffff807`68b0d06b 4889b380000000  mov     qword ptr [rbx+80h],rsi
+
+nt!MiCreateNewSection+0x1ae:
+fffff807`68b0d072 8b13            mov     edx,dword ptr [rbx]
+fffff807`68b0d074 b801000000      mov     eax,1
+fffff807`68b0d079 4d8b36          mov     r14,qword ptr [r14]
+fffff807`68b0d07c 0fbae217        bt      edx,17h
+fffff807`68b0d080 7306            jae     nt!MiCreateNewSection+0x1c4 (fffff807`68b0d088)  Branch
+
+nt!MiCreateNewSection+0x1be:
+fffff807`68b0d082 4108463e        or      byte ptr [r14+3Eh],al
+fffff807`68b0d086 8b13            mov     edx,dword ptr [rbx]
+
+nt!MiCreateNewSection+0x1c4:
+fffff807`68b0d088 4c8b6c2468      mov     r13,qword ptr [rsp+68h]
+fffff807`68b0d08d 448bc2          mov     r8d,edx
+fffff807`68b0d090 0fbae20d        bt      edx,0Dh
+fffff807`68b0d094 7323            jae     nt!MiCreateNewSection+0x1f5 (fffff807`68b0d0b9)  Branch
+
+nt!MiCreateNewSection+0x1d2:
+fffff807`68b0d096 498b4508        mov     rax,qword ptr [r13+8]
+fffff807`68b0d09a 8b4834          mov     ecx,dword ptr [rax+34h]
+fffff807`68b0d09d f6c110          test    cl,10h
+fffff807`68b0d0a0 7517            jne     nt!MiCreateNewSection+0x1f5 (fffff807`68b0d0b9)  Branch
+
+nt!MiCreateNewSection+0x1de:
+fffff807`68b0d0a2 4585e4          test    r12d,r12d
+fffff807`68b0d0a5 7409            je      nt!MiCreateNewSection+0x1ec (fffff807`68b0d0b0)  Branch
+
+nt!MiCreateNewSection+0x1e3:
+fffff807`68b0d0a7 f745a8ff0f0000  test    dword ptr [rbp-58h],0FFFh
+fffff807`68b0d0ae 7509            jne     nt!MiCreateNewSection+0x1f5 (fffff807`68b0d0b9)  Branch
+
+nt!MiCreateNewSection+0x1ec:
+fffff807`68b0d0b0 410fba6e381d    bts     dword ptr [r14+38h],1Dh
+fffff807`68b0d0b6 448b03          mov     r8d,dword ptr [rbx]
+
+nt!MiCreateNewSection+0x1f5:
+fffff807`68b0d0b9 410fbae00e      bt      r8d,0Eh
+fffff807`68b0d0be 7306            jae     nt!MiCreateNewSection+0x202 (fffff807`68b0d0c6)  Branch
+
+nt!MiCreateNewSection+0x1fc:
+fffff807`68b0d0c0 410fba6e3811    bts     dword ptr [r14+38h],11h
+
+nt!MiCreateNewSection+0x202:
+fffff807`68b0d0c6 4c8b4588        mov     r8,qword ptr [rbp-78h]
+fffff807`68b0d0ca 498bd6          mov     rdx,r14
+fffff807`68b0d0cd 498bcd          mov     rcx,r13
+fffff807`68b0d0d0 e8efc2c4ff      call    nt!MiSectionCreated (fffff807`687593c4)
+fffff807`68b0d0d5 8b0b            mov     ecx,dword ptr [rbx]
+fffff807`68b0d0d7 be02000000      mov     esi,2
+fffff807`68b0d0dc 4c8bf8          mov     r15,rax
+fffff807`68b0d0df 4084ce          test    sil,cl
+fffff807`68b0d0e2 7417            je      nt!MiCreateNewSection+0x237 (fffff807`68b0d0fb)  Branch
+
+nt!MiCreateNewSection+0x220:
+fffff807`68b0d0e4 488b8bb8000000  mov     rcx,qword ptr [rbx+0B8h]
+fffff807`68b0d0eb e8d05db9ff      call    nt!IoSetTopLevelIrp (fffff807`686a2ec0)
+fffff807`68b0d0f0 498bcd          mov     rcx,r13
+fffff807`68b0d0f3 e8a861f7ff      call    nt!FsRtlReleaseFile (fffff807`68a832a0)
+fffff807`68b0d0f8 8323fd          and     dword ptr [rbx],0FFFFFFFDh
+
+nt!MiCreateNewSection+0x237:
+fffff807`68b0d0fb 33d2            xor     edx,edx
+fffff807`68b0d0fd 4585e4          test    r12d,r12d
+fffff807`68b0d100 0f8426040000    je      nt!MiCreateNewSection+0x668 (fffff807`68b0d52c)  Branch
+
+nt!MiCreateNewSection+0x242:
+fffff807`68b0d106 448d7a01        lea     r15d,[rdx+1]
+fffff807`68b0d10a 488b442478      mov     rax,qword ptr [rsp+78h]
+fffff807`68b0d10f 488b4838        mov     rcx,qword ptr [rax+38h]
+fffff807`68b0d113 48894d90        mov     qword ptr [rbp-70h],rcx
+fffff807`68b0d117 3955f8          cmp     dword ptr [rbp-8],edx
+fffff807`68b0d11a 750e            jne     nt!MiCreateNewSection+0x266 (fffff807`68b0d12a)  Branch
+
+nt!MiCreateNewSection+0x258:
+fffff807`68b0d11c 3955fc          cmp     dword ptr [rbp-4],edx
+fffff807`68b0d11f 7509            jne     nt!MiCreateNewSection+0x266 (fffff807`68b0d12a)  Branch
+
+nt!MiCreateNewSection+0x25d:
+fffff807`68b0d121 385132          cmp     byte ptr [rcx+32h],dl
+fffff807`68b0d124 7504            jne     nt!MiCreateNewSection+0x266 (fffff807`68b0d12a)  Branch
+
+nt!MiCreateNewSection+0x262:
+fffff807`68b0d126 4408780f        or      byte ptr [rax+0Fh],r15b
+
+nt!MiCreateNewSection+0x266:
+fffff807`68b0d12a 41f7463800080000 test    dword ptr [r14+38h],800h
+fffff807`68b0d132 7438            je      nt!MiCreateNewSection+0x2a8 (fffff807`68b0d16c)  Branch
+
+nt!MiCreateNewSection+0x270:
+fffff807`68b0d134 f70300000800    test    dword ptr [rbx],80000h
+fffff807`68b0d13a 7414            je      nt!MiCreateNewSection+0x28c (fffff807`68b0d150)  Branch
+
+nt!MiCreateNewSection+0x278:
+fffff807`68b0d13c c7055229540005000000 mov dword ptr [nt!MiState+0x358 (fffff807`6904fa98)],5
+fffff807`68b0d146 bf330400c0      mov     edi,0C0000433h
+fffff807`68b0d14b e918040000      jmp     nt!MiCreateNewSection+0x6a4 (fffff807`68b0d568)  Branch
+
+nt!MiCreateNewSection+0x28c:
+fffff807`68b0d150 8b93a8000000    mov     edx,dword ptr [rbx+0A8h]
+fffff807`68b0d156 498bce          mov     rcx,r14
+fffff807`68b0d159 e85294e2ff      call    nt!MiSetPagesModified (fffff807`689365b0)
+fffff807`68b0d15e 8bf8            mov     edi,eax
+fffff807`68b0d160 85c0            test    eax,eax
+fffff807`68b0d162 7908            jns     nt!MiCreateNewSection+0x2a8 (fffff807`68b0d16c)  Branch
+
+nt!MiCreateNewSection+0x2a0:
+fffff807`68b0d164 41bc06000000    mov     r12d,6
+fffff807`68b0d16a eb1d            jmp     nt!MiCreateNewSection+0x2c5 (fffff807`68b0d189)  Branch
+
+nt!MiCreateNewSection+0x2a8:
+fffff807`68b0d16c 4c8d442462      lea     r8,[rsp+62h]
+fffff807`68b0d171 498bce          mov     rcx,r14
+fffff807`68b0d174 488d55a0        lea     rdx,[rbp-60h]
+fffff807`68b0d178 e813250000      call    nt!MiParseComAndCetHeaders (fffff807`68b0f690)
+fffff807`68b0d17d 8bf8            mov     edi,eax
+fffff807`68b0d17f 85c0            test    eax,eax
+fffff807`68b0d181 7912            jns     nt!MiCreateNewSection+0x2d1 (fffff807`68b0d195)  Branch
+
+nt!MiCreateNewSection+0x2bf:
+fffff807`68b0d183 41bc04000000    mov     r12d,4
+
+nt!MiCreateNewSection+0x2c5:
+fffff807`68b0d189 44892508295400  mov     dword ptr [nt!MiState+0x358 (fffff807`6904fa98)],r12d
+fffff807`68b0d190 e9d3030000      jmp     nt!MiCreateNewSection+0x6a4 (fffff807`68b0d568)  Branch
+
+nt!MiCreateNewSection+0x2d1:
+fffff807`68b0d195 8b13            mov     edx,dword ptr [rbx]
+fffff807`68b0d197 41b904000000    mov     r9d,4
+fffff807`68b0d19d 458d6102        lea     r12d,[r9+2]
+fffff807`68b0d1a1 0fbae208        bt      edx,8
+fffff807`68b0d1a5 7305            jae     nt!MiCreateNewSection+0x2e8 (fffff807`68b0d1ac)  Branch
+
+nt!MiCreateNewSection+0x2e3:
+fffff807`68b0d1a7 418bc9          mov     ecx,r9d
+fffff807`68b0d1aa eb23            jmp     nt!MiCreateNewSection+0x30b (fffff807`68b0d1cf)  Branch
+
+nt!MiCreateNewSection+0x2e8:
+fffff807`68b0d1ac f6c220          test    dl,20h
+fffff807`68b0d1af 7405            je      nt!MiCreateNewSection+0x2f2 (fffff807`68b0d1b6)  Branch
+
+nt!MiCreateNewSection+0x2ed:
+fffff807`68b0d1b1 418bcf          mov     ecx,r15d
+fffff807`68b0d1b4 eb19            jmp     nt!MiCreateNewSection+0x30b (fffff807`68b0d1cf)  Branch
+
+nt!MiCreateNewSection+0x2f2:
+fffff807`68b0d1b6 f6c210          test    dl,10h
+fffff807`68b0d1b9 7412            je      nt!MiCreateNewSection+0x309 (fffff807`68b0d1cd)  Branch
+
+nt!MiCreateNewSection+0x2f7:
+fffff807`68b0d1bb 8bc2            mov     eax,edx
+fffff807`68b0d1bd 2500100000      and     eax,1000h
+fffff807`68b0d1c2 f7d8            neg     eax
+fffff807`68b0d1c4 1bc9            sbb     ecx,ecx
+fffff807`68b0d1c6 4123cc          and     ecx,r12d
+fffff807`68b0d1c9 03ce            add     ecx,esi
+fffff807`68b0d1cb eb02            jmp     nt!MiCreateNewSection+0x30b (fffff807`68b0d1cf)  Branch
+
+nt!MiCreateNewSection+0x309:
+fffff807`68b0d1cd 33c9            xor     ecx,ecx
+
+nt!MiCreateNewSection+0x30b:
+fffff807`68b0d1cf 448a442460      mov     r8b,byte ptr [rsp+60h]
+fffff807`68b0d1d4 448bf9          mov     r15d,ecx
+fffff807`68b0d1d7 4183cf10        or      r15d,10h
+fffff807`68b0d1db 8bc2            mov     eax,edx
+fffff807`68b0d1dd 2500080000      and     eax,800h
+fffff807`68b0d1e2 440f44f9        cmove   r15d,ecx
+fffff807`68b0d1e6 8bca            mov     ecx,edx
+fffff807`68b0d1e8 f7c200840000    test    edx,8400h
+fffff807`68b0d1ee 0f84b0000000    je      nt!MiCreateNewSection+0x3e0 (fffff807`68b0d2a4)  Branch
+
+nt!MiCreateNewSection+0x330:
+fffff807`68b0d1f4 f6c210          test    dl,10h
+fffff807`68b0d1f7 0f85a7000000    jne     nt!MiCreateNewSection+0x3e0 (fffff807`68b0d2a4)  Branch
+
+nt!MiCreateNewSection+0x339:
+fffff807`68b0d1fd 65488b042588010000 mov   rax,qword ptr gs:[188h]
+fffff807`68b0d206 4533c9          xor     r9d,r9d
+fffff807`68b0d209 418bd7          mov     edx,r15d
+fffff807`68b0d20c 488b88b8000000  mov     rcx,qword ptr [rax+0B8h]
+fffff807`68b0d213 488d442463      lea     rax,[rsp+63h]
+fffff807`68b0d218 4889442420      mov     qword ptr [rsp+20h],rax
+fffff807`68b0d21d 448ba9d0090000  mov     r13d,dword ptr [rcx+9D0h]
+fffff807`68b0d224 488b4c2468      mov     rcx,qword ptr [rsp+68h]
+fffff807`68b0d229 e83645f8ff      call    nt!SeGetImageRequiredSigningLevel (fffff807`68a91764)
+fffff807`68b0d22e 8bf8            mov     edi,eax
+fffff807`68b0d230 85c0            test    eax,eax
+fffff807`68b0d232 790f            jns     nt!MiCreateNewSection+0x37f (fffff807`68b0d243)  Branch
+
+nt!MiCreateNewSection+0x370:
+fffff807`68b0d234 c7055a28540007000000 mov dword ptr [nt!MiState+0x358 (fffff807`6904fa98)],7
+fffff807`68b0d23e e925030000      jmp     nt!MiCreateNewSection+0x6a4 (fffff807`68b0d568)  Branch
+
+nt!MiCreateNewSection+0x37f:
+fffff807`68b0d243 f70300080000    test    dword ptr [rbx],800h
+fffff807`68b0d249 753e            jne     nt!MiCreateNewSection+0x3c5 (fffff807`68b0d289)  Branch
+
+nt!MiCreateNewSection+0x387:
+fffff807`68b0d24b 807c246000      cmp     byte ptr [rsp+60h],0
+fffff807`68b0d250 7415            je      nt!MiCreateNewSection+0x3a3 (fffff807`68b0d267)  Branch
+
+nt!MiCreateNewSection+0x38e:
+fffff807`68b0d252 8b442470        mov     eax,dword ptr [rsp+70h]
+fffff807`68b0d256 410fbae517      bt      r13d,17h
+fffff807`68b0d25b ba01000000      mov     edx,1
+fffff807`68b0d260 0f42c2          cmovb   eax,edx
+fffff807`68b0d263 89442470        mov     dword ptr [rsp+70h],eax
+
+nt!MiCreateNewSection+0x3a3:
+fffff807`68b0d267 410fbae518      bt      r13d,18h
+fffff807`68b0d26c 7307            jae     nt!MiCreateNewSection+0x3b1 (fffff807`68b0d275)  Branch
+
+nt!MiCreateNewSection+0x3aa:
+fffff807`68b0d26e c644246408      mov     byte ptr [rsp+64h],8
+fffff807`68b0d273 eb14            jmp     nt!MiCreateNewSection+0x3c5 (fffff807`68b0d289)  Branch
+
+nt!MiCreateNewSection+0x3b1:
+fffff807`68b0d275 8b442464        mov     eax,dword ptr [rsp+64h]
+fffff807`68b0d279 410fbae519      bt      r13d,19h
+fffff807`68b0d27e 0fb6c0          movzx   eax,al
+fffff807`68b0d281 410f42c4        cmovb   eax,r12d
+fffff807`68b0d285 89442464        mov     dword ptr [rsp+64h],eax
+
+nt!MiCreateNewSection+0x3c5:
+fffff807`68b0d289 448a442463      mov     r8b,byte ptr [rsp+63h]
+fffff807`68b0d28e 41b904000000    mov     r9d,4
+fffff807`68b0d294 4c8b6c2468      mov     r13,qword ptr [rsp+68h]
+fffff807`68b0d299 44884318        mov     byte ptr [rbx+18h],r8b
+fffff807`68b0d29d 8b0b            mov     ecx,dword ptr [rbx]
+fffff807`68b0d29f 4488442460      mov     byte ptr [rsp+60h],r8b
+
+nt!MiCreateNewSection+0x3e0:
+fffff807`68b0d2a4 41bb00000040    mov     r11d,40000000h
+fffff807`68b0d2aa 0fbae113        bt      ecx,13h
+fffff807`68b0d2ae 7315            jae     nt!MiCreateNewSection+0x401 (fffff807`68b0d2c5)  Branch
+
+nt!MiCreateNewSection+0x3ec:
+fffff807`68b0d2b0 410fb6c0        movzx   eax,r8b
+fffff807`68b0d2b4 450bfb          or      r15d,r11d
+fffff807`68b0d2b7 4584c0          test    r8b,r8b
+fffff807`68b0d2ba 410f44c1        cmove   eax,r9d
+fffff807`68b0d2be 448ac0          mov     r8b,al
+fffff807`68b0d2c1 88442460        mov     byte ptr [rsp+60h],al
+
+nt!MiCreateNewSection+0x401:
+fffff807`68b0d2c5 418bd7          mov     edx,r15d
+fffff807`68b0d2c8 8bc1            mov     eax,ecx
+fffff807`68b0d2ca 0fbaea1d        bts     edx,1Dh
+fffff807`68b0d2ce 41ba00800000    mov     r10d,8000h
+fffff807`68b0d2d4 2500004000      and     eax,400000h
+fffff807`68b0d2d9 41b901000000    mov     r9d,1
+fffff807`68b0d2df 410f44d7        cmove   edx,r15d
+fffff807`68b0d2e3 f70513215f0000000400 test dword ptr [nt!MiFlags (fffff807`690ff400)],40000h
+fffff807`68b0d2ed 89542468        mov     dword ptr [rsp+68h],edx
+fffff807`68b0d2f1 7412            je      nt!MiCreateNewSection+0x441 (fffff807`68b0d305)  Branch
+
+nt!MiCreateNewSection+0x42f:
+fffff807`68b0d2f3 410bca          or      ecx,r10d
+fffff807`68b0d2f6 890b            mov     dword ptr [rbx],ecx
+fffff807`68b0d2f8 4584c0          test    r8b,r8b
+fffff807`68b0d2fb 7508            jne     nt!MiCreateNewSection+0x441 (fffff807`68b0d305)  Branch
+
+nt!MiCreateNewSection+0x439:
+fffff807`68b0d2fd 458ac1          mov     r8b,r9b
+fffff807`68b0d300 44884c2460      mov     byte ptr [rsp+60h],r9b
+
+nt!MiCreateNewSection+0x441:
+fffff807`68b0d305 8bd1            mov     edx,ecx
+fffff807`68b0d307 81e200040000    and     edx,400h
+fffff807`68b0d30d 7405            je      nt!MiCreateNewSection+0x450 (fffff807`68b0d314)  Branch
+
+nt!MiCreateNewSection+0x44b:
+fffff807`68b0d30f 4584c0          test    r8b,r8b
+fffff807`68b0d312 7515            jne     nt!MiCreateNewSection+0x465 (fffff807`68b0d329)  Branch
+
+nt!MiCreateNewSection+0x450:
+fffff807`68b0d314 4185ca          test    r10d,ecx
+fffff807`68b0d317 7510            jne     nt!MiCreateNewSection+0x465 (fffff807`68b0d329)  Branch
+
+nt!MiCreateNewSection+0x455:
+fffff807`68b0d319 488b4590        mov     rax,qword ptr [rbp-70h]
+fffff807`68b0d31d c644246100      mov     byte ptr [rsp+61h],0
+fffff807`68b0d322 8a402e          mov     al,byte ptr [rax+2Eh]
+fffff807`68b0d325 84c0            test    al,al
+fffff807`68b0d327 7905            jns     nt!MiCreateNewSection+0x46a (fffff807`68b0d32e)  Branch
+
+nt!MiCreateNewSection+0x465:
+fffff807`68b0d329 44884c2461      mov     byte ptr [rsp+61h],r9b
+
+nt!MiCreateNewSection+0x46a:
+fffff807`68b0d32e 85d2            test    edx,edx
+fffff807`68b0d330 740c            je      nt!MiCreateNewSection+0x47a (fffff807`68b0d33e)  Branch
+
+nt!MiCreateNewSection+0x46e:
+fffff807`68b0d332 807c246400      cmp     byte ptr [rsp+64h],0
+fffff807`68b0d337 7405            je      nt!MiCreateNewSection+0x47a (fffff807`68b0d33e)  Branch
+
+nt!MiCreateNewSection+0x475:
+fffff807`68b0d339 458ae1          mov     r12b,r9b
+fffff807`68b0d33c eb03            jmp     nt!MiCreateNewSection+0x47d (fffff807`68b0d341)  Branch
+
+nt!MiCreateNewSection+0x47a:
+fffff807`68b0d33e 4532e4          xor     r12b,r12b
+
+nt!MiCreateNewSection+0x47d:
+fffff807`68b0d341 f6c140          test    cl,40h
+fffff807`68b0d344 750c            jne     nt!MiCreateNewSection+0x48e (fffff807`68b0d352)  Branch
+
+nt!MiCreateNewSection+0x482:
+fffff807`68b0d346 f6c120          test    cl,20h
+fffff807`68b0d349 be00000000      mov     esi,0
+fffff807`68b0d34e 410f45f1        cmovne  esi,r9d
+
+nt!MiCreateNewSection+0x48e:
+fffff807`68b0d352 4533ff          xor     r15d,r15d
+fffff807`68b0d355 45855e38        test    dword ptr [r14+38h],r11d
+fffff807`68b0d359 7449            je      nt!MiCreateNewSection+0x4e0 (fffff807`68b0d3a4)  Branch
+
+nt!MiCreateNewSection+0x497:
+fffff807`68b0d35b 488d5580        lea     rdx,[rbp-80h]
+fffff807`68b0d35f 498bcd          mov     rcx,r13
+fffff807`68b0d362 e8f5331800      call    nt!FsRtlGetDirectImageOriginalBase (fffff807`68c9075c)
+fffff807`68b0d367 8bf8            mov     edi,eax
+fffff807`68b0d369 85c0            test    eax,eax
+fffff807`68b0d36b 7931            jns     nt!MiCreateNewSection+0x4da (fffff807`68b0d39e)  Branch
+
+nt!MiCreateNewSection+0x4a9:
+fffff807`68b0d36d 3dbb0000c0      cmp     eax,0C00000BBh
+fffff807`68b0d372 740d            je      nt!MiCreateNewSection+0x4bd (fffff807`68b0d381)  Branch
+
+nt!MiCreateNewSection+0x4b0:
+fffff807`68b0d374 3d100000c0      cmp     eax,0C0000010h
+fffff807`68b0d379 7406            je      nt!MiCreateNewSection+0x4bd (fffff807`68b0d381)  Branch
+
+nt!MiCreateNewSection+0x4b7:
+fffff807`68b0d37b 488b4580        mov     rax,qword ptr [rbp-80h]
+fffff807`68b0d37f eb0a            jmp     nt!MiCreateNewSection+0x4c7 (fffff807`68b0d38b)  Branch
+
+nt!MiCreateNewSection+0x4bd:
+fffff807`68b0d381 33ff            xor     edi,edi
+fffff807`68b0d383 4883c8ff        or      rax,0FFFFFFFFFFFFFFFFh
+fffff807`68b0d387 48894580        mov     qword ptr [rbp-80h],rax
+
+nt!MiCreateNewSection+0x4c7:
+fffff807`68b0d38b 85ff            test    edi,edi
+fffff807`68b0d38d 791d            jns     nt!MiCreateNewSection+0x4e8 (fffff807`68b0d3ac)  Branch
+
+nt!MiCreateNewSection+0x4cb:
+fffff807`68b0d38f c705ff26540008000000 mov dword ptr [nt!MiState+0x358 (fffff807`6904fa98)],8
+fffff807`68b0d399 e9ca010000      jmp     nt!MiCreateNewSection+0x6a4 (fffff807`68b0d568)  Branch
+
+nt!MiCreateNewSection+0x4da:
+fffff807`68b0d39e 488b4580        mov     rax,qword ptr [rbp-80h]
+fffff807`68b0d3a2 eb08            jmp     nt!MiCreateNewSection+0x4e8 (fffff807`68b0d3ac)  Branch
+
+nt!MiCreateNewSection+0x4e0:
+fffff807`68b0d3a4 4883c8ff        or      rax,0FFFFFFFFFFFFFFFFh
+fffff807`68b0d3a8 48894580        mov     qword ptr [rbp-80h],rax
+
+nt!MiCreateNewSection+0x4e8:
+fffff807`68b0d3ac b901000000      mov     ecx,1
+fffff807`68b0d3b1 384c2461        cmp     byte ptr [rsp+61h],cl
+fffff807`68b0d3b5 7409            je      nt!MiCreateNewSection+0x4fc (fffff807`68b0d3c0)  Branch
+
+nt!MiCreateNewSection+0x4f3:
+fffff807`68b0d3b7 443ae1          cmp     r12b,cl
+fffff807`68b0d3ba 0f85bc000000    jne     nt!MiCreateNewSection+0x5b8 (fffff807`68b0d47c)  Branch
+
+nt!MiCreateNewSection+0x4fc:
+fffff807`68b0d3c0 4883f8ff        cmp     rax,0FFFFFFFFFFFFFFFFh
+fffff807`68b0d3c4 744b            je      nt!MiCreateNewSection+0x54d (fffff807`68b0d411)  Branch
+
+nt!MiCreateNewSection+0x502:
+fffff807`68b0d3c6 44217c2428      and     dword ptr [rsp+28h],r15d
+fffff807`68b0d3cb 488d55a0        lea     rdx,[rbp-60h]
+fffff807`68b0d3cf 448b442474      mov     r8d,dword ptr [rsp+74h]
+fffff807`68b0d3d4 448bce          mov     r9d,esi
+fffff807`68b0d3d7 488b4c2478      mov     rcx,qword ptr [rsp+78h]
+fffff807`68b0d3dc 4889442420      mov     qword ptr [rsp+20h],rax
+fffff807`68b0d3e1 e8f6140000      call    nt!MiRelocateImage (fffff807`68b0e8dc)
+fffff807`68b0d3e6 8bf8            mov     edi,eax
+fffff807`68b0d3e8 85c0            test    eax,eax
+fffff807`68b0d3ea 790f            jns     nt!MiCreateNewSection+0x537 (fffff807`68b0d3fb)  Branch
+
+nt!MiCreateNewSection+0x528:
+fffff807`68b0d3ec c705a226540009000000 mov dword ptr [nt!MiState+0x358 (fffff807`6904fa98)],9
+fffff807`68b0d3f6 e96d010000      jmp     nt!MiCreateNewSection+0x6a4 (fffff807`68b0d568)  Branch
+
+nt!MiCreateNewSection+0x537:
+fffff807`68b0d3fb b801000000      mov     eax,1
+fffff807`68b0d400 448bf8          mov     r15d,eax
+fffff807`68b0d403 38442462        cmp     byte ptr [rsp+62h],al
+fffff807`68b0d407 7508            jne     nt!MiCreateNewSection+0x54d (fffff807`68b0d411)  Branch
+
+nt!MiCreateNewSection+0x545:
+fffff807`68b0d409 498bce          mov     rcx,r14
+fffff807`68b0d40c e813ecc0ff      call    nt!MiMakeImageReadOnly (fffff807`6871c024)
+
+nt!MiCreateNewSection+0x54d:
+fffff807`68b0d411 8b442464        mov     eax,dword ptr [rsp+64h]
+fffff807`68b0d415 4d8bc6          mov     r8,r14
+fffff807`68b0d418 448b8ba8000000  mov     r9d,dword ptr [rbx+0A8h]
+fffff807`68b0d41f 498bd5          mov     rdx,r13
+fffff807`68b0d422 88442450        mov     byte ptr [rsp+50h],al
+fffff807`68b0d426 33c9            xor     ecx,ecx
+fffff807`68b0d428 8a442460        mov     al,byte ptr [rsp+60h]
+fffff807`68b0d42c 88442448        mov     byte ptr [rsp+48h],al
+fffff807`68b0d430 8b442470        mov     eax,dword ptr [rsp+70h]
+fffff807`68b0d434 89442440        mov     dword ptr [rsp+40h],eax
+fffff807`68b0d438 8a442461        mov     al,byte ptr [rsp+61h]
+fffff807`68b0d43c 4488642438      mov     byte ptr [rsp+38h],r12b
+fffff807`68b0d441 88442430        mov     byte ptr [rsp+30h],al
+fffff807`68b0d445 8b442468        mov     eax,dword ptr [rsp+68h]
+fffff807`68b0d449 89442428        mov     dword ptr [rsp+28h],eax
+fffff807`68b0d44d 488b83a0000000  mov     rax,qword ptr [rbx+0A0h]
+fffff807`68b0d454 4889442420      mov     qword ptr [rsp+20h],rax
+fffff807`68b0d459 e83e11f2ff      call    nt!MiValidateSectionSigningPolicy (fffff807`68a2e59c)
+fffff807`68b0d45e 8bf8            mov     edi,eax
+fffff807`68b0d460 85c0            test    eax,eax
+fffff807`68b0d462 790f            jns     nt!MiCreateNewSection+0x5af (fffff807`68b0d473)  Branch
+
+nt!MiCreateNewSection+0x5a0:
+fffff807`68b0d464 c7052a2654000a000000 mov dword ptr [nt!MiState+0x358 (fffff807`6904fa98)],0Ah
+fffff807`68b0d46e e9f5000000      jmp     nt!MiCreateNewSection+0x6a4 (fffff807`68b0d568)  Branch
+
+nt!MiCreateNewSection+0x5af:
+fffff807`68b0d473 4585ff          test    r15d,r15d
+fffff807`68b0d476 7541            jne     nt!MiCreateNewSection+0x5f5 (fffff807`68b0d4b9)  Branch
+
+nt!MiCreateNewSection+0x5b4:
+fffff807`68b0d478 488b4580        mov     rax,qword ptr [rbp-80h]
+
+nt!MiCreateNewSection+0x5b8:
+fffff807`68b0d47c 8364242800      and     dword ptr [rsp+28h],0
+fffff807`68b0d481 488d55a0        lea     rdx,[rbp-60h]
+fffff807`68b0d485 448b442474      mov     r8d,dword ptr [rsp+74h]
+fffff807`68b0d48a 448bce          mov     r9d,esi
+fffff807`68b0d48d 488b4c2478      mov     rcx,qword ptr [rsp+78h]
+fffff807`68b0d492 4889442420      mov     qword ptr [rsp+20h],rax
+fffff807`68b0d497 e840140000      call    nt!MiRelocateImage (fffff807`68b0e8dc)
+fffff807`68b0d49c 8bf8            mov     edi,eax
+fffff807`68b0d49e 85c0            test    eax,eax
+fffff807`68b0d4a0 0f88b8000000    js      nt!MiCreateNewSection+0x69a (fffff807`68b0d55e)  Branch
+
+nt!MiCreateNewSection+0x5e2:
+fffff807`68b0d4a6 ba01000000      mov     edx,1
+fffff807`68b0d4ab 38542462        cmp     byte ptr [rsp+62h],dl
+fffff807`68b0d4af 7508            jne     nt!MiCreateNewSection+0x5f5 (fffff807`68b0d4b9)  Branch
+
+nt!MiCreateNewSection+0x5ed:
+fffff807`68b0d4b1 498bce          mov     rcx,r14
+fffff807`68b0d4b4 e86bebc0ff      call    nt!MiMakeImageReadOnly (fffff807`6871c024)
+
+nt!MiCreateNewSection+0x5f5:
+fffff807`68b0d4b9 488b5d88        mov     rbx,qword ptr [rbp-78h]
+fffff807`68b0d4bd 4885db          test    rbx,rbx
+fffff807`68b0d4c0 7452            je      nt!MiCreateNewSection+0x650 (fffff807`68b0d514)  Branch
+
+nt!MiCreateNewSection+0x5fe:
+fffff807`68b0d4c2 41bc04000000    mov     r12d,4
+
+nt!MiCreateNewSection+0x604:
+fffff807`68b0d4c8 4484630a        test    byte ptr [rbx+0Ah],r12b
+fffff807`68b0d4cc 753a            jne     nt!MiCreateNewSection+0x644 (fffff807`68b0d508)  Branch
+
+nt!MiCreateNewSection+0x60a:
+fffff807`68b0d4ce 8b7328          mov     esi,dword ptr [rbx+28h]
+fffff807`68b0d4d1 4c8d7b30        lea     r15,[rbx+30h]
+fffff807`68b0d4d5 c1ee0c          shr     esi,0Ch
+fffff807`68b0d4d8 85f6            test    esi,esi
+fffff807`68b0d4da 742c            je      nt!MiCreateNewSection+0x644 (fffff807`68b0d508)  Branch
+
+nt!MiCreateNewSection+0x618:
+fffff807`68b0d4dc 498b07          mov     rax,qword ptr [r15]
+fffff807`68b0d4df 4883f8ff        cmp     rax,0FFFFFFFFFFFFFFFFh
+fffff807`68b0d4e3 741a            je      nt!MiCreateNewSection+0x63b (fffff807`68b0d4ff)  Branch
+
+nt!MiCreateNewSection+0x621:
+fffff807`68b0d4e5 488d0c40        lea     rcx,[rax+rax*2]
+fffff807`68b0d4e9 48c1e104        shl     rcx,4
+fffff807`68b0d4ed 48b8000000008081ffff mov rax,0FFFF818000000000h
+fffff807`68b0d4f7 4803c8          add     rcx,rax
+fffff807`68b0d4fa e8f187c2ff      call    nt!MiFinalizeImageHeaderPage (fffff807`68735cf0)
+
+nt!MiCreateNewSection+0x63b:
+fffff807`68b0d4ff 4983c708        add     r15,8
+fffff807`68b0d503 83c6ff          add     esi,0FFFFFFFFh
+fffff807`68b0d506 75d4            jne     nt!MiCreateNewSection+0x618 (fffff807`68b0d4dc)  Branch
+
+nt!MiCreateNewSection+0x644:
+fffff807`68b0d508 488b1b          mov     rbx,qword ptr [rbx]
+fffff807`68b0d50b 4885db          test    rbx,rbx
+fffff807`68b0d50e 75b8            jne     nt!MiCreateNewSection+0x604 (fffff807`68b0d4c8)  Branch
+
+nt!MiCreateNewSection+0x64c:
+fffff807`68b0d510 488b5d88        mov     rbx,qword ptr [rbp-78h]
+
+nt!MiCreateNewSection+0x650:
+fffff807`68b0d514 33d2            xor     edx,edx
+fffff807`68b0d516 488bcb          mov     rcx,rbx
+fffff807`68b0d519 e80e0a0000      call    nt!MiDeleteImageCreationMdls (fffff807`68b0df2c)
+fffff807`68b0d51e 498bd6          mov     rdx,r14
+fffff807`68b0d521 498bcd          mov     rcx,r13
+fffff807`68b0d524 e847c4c4ff      call    nt!MiReleaseImageSection (fffff807`68759970)
+fffff807`68b0d529 4c8bf8          mov     r15,rax
+
+nt!MiCreateNewSection+0x668:
+fffff807`68b0d52c 498bcf          mov     rcx,r15
+fffff807`68b0d52f e8c050b9ff      call    nt!MiReleaseControlAreaWaiters (fffff807`686a25f4)
+
+nt!MiCreateNewSection+0x670:
+fffff807`68b0d534 8bc7            mov     eax,edi
+
+nt!MiCreateNewSection+0x672:
+fffff807`68b0d536 488b4d10        mov     rcx,qword ptr [rbp+10h]
+fffff807`68b0d53a 4833cc          xor     rcx,rsp
+fffff807`68b0d53d e8ae55ccff      call    nt!_security_check_cookie (fffff807`687d2af0)
+fffff807`68b0d542 488b9c2470010000 mov     rbx,qword ptr [rsp+170h]
+fffff807`68b0d54a 4881c420010000  add     rsp,120h
+fffff807`68b0d551 415f            pop     r15
+fffff807`68b0d553 415e            pop     r14
+fffff807`68b0d555 415d            pop     r13
+fffff807`68b0d557 415c            pop     r12
+fffff807`68b0d559 5f              pop     rdi
+fffff807`68b0d55a 5e              pop     rsi
+fffff807`68b0d55b 5d              pop     rbp
+fffff807`68b0d55c c3              ret
+
+nt!MiCreateNewSection+0x69a:
+fffff807`68b0d55e c705302554000b000000 mov dword ptr [nt!MiState+0x358 (fffff807`6904fa98)],0Bh
+
+nt!MiCreateNewSection+0x6a4:
+fffff807`68b0d568 488b4d88        mov     rcx,qword ptr [rbp-78h]
+fffff807`68b0d56c ba01000000      mov     edx,1
+fffff807`68b0d571 e8b6090000      call    nt!MiDeleteImageCreationMdls (fffff807`68b0df2c)
+fffff807`68b0d576 ebbc            jmp     nt!MiCreateNewSection+0x670 (fffff807`68b0d534)  Branch

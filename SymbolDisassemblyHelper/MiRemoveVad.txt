@@ -1,0 +1,44 @@
+kd> uf nt!MiRemoveVad
+nt!MiRemoveVad:
+fffff807`1a15caf0 48895c2408      mov     qword ptr [rsp+8],rbx
+fffff807`1a15caf5 4889742410      mov     qword ptr [rsp+10h],rsi
+fffff807`1a15cafa 57              push    rdi
+fffff807`1a15cafb 4883ec20        sub     rsp,20h
+fffff807`1a15caff 488db2d8070000  lea     rsi,[rdx+7D8h]
+fffff807`1a15cb06 488bda          mov     rbx,rdx
+fffff807`1a15cb09 488bd1          mov     rdx,rcx
+fffff807`1a15cb0c 488bf9          mov     rdi,rcx
+fffff807`1a15cb0f 488bce          mov     rcx,rsi
+fffff807`1a15cb12 e829f8d6ff      call    nt!RtlAvlRemoveNode (fffff807`19ecc340)
+fffff807`1a15cb17 4839bbe0070000  cmp     qword ptr [rbx+7E0h],rdi
+fffff807`1a15cb1e 750a            jne     nt!MiRemoveVad+0x3a (fffff807`1a15cb2a)  Branch
+
+nt!MiRemoveVad+0x30:
+fffff807`1a15cb20 488b06          mov     rax,qword ptr [rsi]
+fffff807`1a15cb23 488983e0070000  mov     qword ptr [rbx+7E0h],rax
+
+nt!MiRemoveVad+0x3a:
+fffff807`1a15cb2a 48ff8be8070000  dec     qword ptr [rbx+7E8h]
+fffff807`1a15cb31 488bcf          mov     rcx,rdi
+fffff807`1a15cb34 48c74710feffffff mov     qword ptr [rdi+10h],0FFFFFFFFFFFFFFFEh
+fffff807`1a15cb3c e883a1dbff      call    nt!MiIsVadLargePrivate (fffff807`19f16cc4)
+fffff807`1a15cb41 85c0            test    eax,eax
+fffff807`1a15cb43 7421            je      nt!MiRemoveVad+0x76 (fffff807`1a15cb66)  Branch
+
+nt!MiRemoveVad+0x55:
+fffff807`1a15cb45 8b4730          mov     eax,dword ptr [rdi+30h]
+fffff807`1a15cb48 488d0dc1a0adff  lea     rcx,[nt!MiVadPageSizes (fffff807`19c36c10)]
+fffff807`1a15cb4f 48c1e812        shr     rax,12h
+fffff807`1a15cb53 83e003          and     eax,3
+fffff807`1a15cb56 48813cc100020000 cmp     qword ptr [rcx+rax*8],200h
+fffff807`1a15cb5e 7206            jb      nt!MiRemoveVad+0x76 (fffff807`1a15cb66)  Branch
+
+nt!MiRemoveVad+0x70:
+fffff807`1a15cb60 ff8b5c080000    dec     dword ptr [rbx+85Ch]
+
+nt!MiRemoveVad+0x76:
+fffff807`1a15cb66 488b5c2430      mov     rbx,qword ptr [rsp+30h]
+fffff807`1a15cb6b 488b742438      mov     rsi,qword ptr [rsp+38h]
+fffff807`1a15cb70 4883c420        add     rsp,20h
+fffff807`1a15cb74 5f              pop     rdi
+fffff807`1a15cb75 c3              ret

@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Driver Files">
+      <UniqueIdentifier>{8E41214B-6785-4CFE-B992-037D68949A14}</UniqueIdentifier>
+      <Extensions>inf;inv;inx;mof;mc;</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{86958147-4233-46ba-8ad9-fd607348b3c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Memory">
+      <UniqueIdentifier>{bd92897d-55f5-4a14-bd56-f2d2dc8c1664}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Process">
+      <UniqueIdentifier>{3f6a5d67-ebf7-4266-ace3-c35ca0c1c119}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Communication">
+      <UniqueIdentifier>{70e1f200-b440-494b-9dc1-6156fe8727cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utils">
+      <UniqueIdentifier>{a3b1907d-4989-4486-943b-659b8cef8b77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Common">
+      <UniqueIdentifier>{1e2b3c43-ef8b-4608-b742-1aa771944a5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SymbolDissassemblyHelper">
+      <UniqueIdentifier>{38d1c0bf-8d0d-4b37-b715-1b798a70c7b3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Inf Include="NewWorldInterface.inf">
+      <Filter>Driver Files</Filter>
+    </Inf>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DriverCore.c">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceControl.c">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="MemoryManager.c">
+      <Filter>Source Files\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="VitrualAddressTranslation.c">
+      <Filter>Source Files\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="MemoryProtection.c">
+      <Filter>Source Files\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="ProcessManager.c">
+      <Filter>Source Files\Process</Filter>
+    </ClCompile>
+    <ClCompile Include="VADTreeWalker.c">
+      <Filter>Source Files\Process</Filter>
+    </ClCompile>
+    <ClCompile Include="SharedMemory.c">
+      <Filter>Source Files\Communication</Filter>
+    </ClCompile>
+    <ClCompile Include="EventHandling.c">
+      <Filter>Source Files\Communication</Filter>
+    </ClCompile>
+    <ClCompile Include="KernelHelpers.c">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="main.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DriverCore.h">
+      <Filter>Source Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceControl.h">
+      <Filter>Source Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="MemoryManager.h">
+      <Filter>Source Files\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="VirtualAddressTranslation.h">
+      <Filter>Source Files\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="MemoryProtection.h">
+      <Filter>Source Files\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="ProcessManager.h">
+      <Filter>Source Files\Process</Filter>
+    </ClInclude>
+    <ClInclude Include="VADTreeWalker.h">
+      <Filter>Source Files\Process</Filter>
+    </ClInclude>
+    <ClInclude Include="SharedMemory.h">
+      <Filter>Source Files\Communication</Filter>
+    </ClInclude>
+    <ClInclude Include="EventHandling.h">
+      <Filter>Source Files\Communication</Filter>
+    </ClInclude>
+    <ClInclude Include="KernelHelpers.h">
+      <Filter>Source Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="SharedTypes.h">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="SharedConstants.h">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="ProtocolDefinitions.h">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\SymbolDisassemblyHelper\MiInsertVadCharges.txt">
+      <Filter>Source Files\SymbolDissassemblyHelper</Filter>
+    </Text>
+    <Text Include="..\SymbolDisassemblyHelper\MiRemoveVadCharges.txt">
+      <Filter>Source Files\SymbolDissassemblyHelper</Filter>
+    </Text>
+    <Text Include="..\SymbolDisassemblyHelper\MiCheckForConflictingVad.txt">
+      <Filter>Source Files\SymbolDissassemblyHelper</Filter>
+    </Text>
+    <Text Include="..\SymbolDisassemblyHelper\MiInsertVad.txt">
+      <Filter>Source Files\SymbolDissassemblyHelper</Filter>
+    </Text>
+    <Text Include="..\SymbolDisassemblyHelper\MiRemoveVad.txt">
+      <Filter>Source Files\SymbolDissassemblyHelper</Filter>
+    </Text>
+    <Text Include="..\SymbolDisassemblyHelper\MiCreateNewSection.txt">
+      <Filter>Source Files\SymbolDissassemblyHelper</Filter>
+    </Text>
+    <Text Include="..\SymbolDisassemblyHelper\MiCreatePagingFileMap.txt">
+      <Filter>Source Files\SymbolDissassemblyHelper</Filter>
+    </Text>
+    <Text Include="..\SymbolDisassemblyHelper\MiCreateImageFileMap.txt">
+      <Filter>Source Files\SymbolDissassemblyHelper</Filter>
+    </Text>
+    <Text Include="..\SymbolDisassemblyHelper\MiCreateDataFileMap.txt">
+      <Filter>Source Files\SymbolDissassemblyHelper</Filter>
+    </Text>
+    <Text Include="..\SymbolDisassemblyHelper\MiCreateSection.txt">
+      <Filter>Source Files\SymbolDissassemblyHelper</Filter>
+    </Text>
+    <Text Include="..\SymbolDisassemblyHelper\MiRemoveSharedCommitNode.txt">
+      <Filter>Source Files\SymbolDissassemblyHelper</Filter>
+    </Text>
+  </ItemGroup>
+</Project>

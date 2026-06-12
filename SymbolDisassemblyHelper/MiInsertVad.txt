@@ -1,0 +1,269 @@
+kd> uf nt!MiInsertVad
+nt!MiInsertVad:
+fffff807`19e36f50 48895c2408      mov     qword ptr [rsp+8],rbx
+fffff807`19e36f55 48896c2410      mov     qword ptr [rsp+10h],rbp
+fffff807`19e36f5a 4889742418      mov     qword ptr [rsp+18h],rsi
+fffff807`19e36f5f 57              push    rdi
+fffff807`19e36f60 4154            push    r12
+fffff807`19e36f62 4155            push    r13
+fffff807`19e36f64 4156            push    r14
+fffff807`19e36f66 4157            push    r15
+fffff807`19e36f68 4883ec20        sub     rsp,20h
+fffff807`19e36f6c 8b411c          mov     eax,dword ptr [rcx+1Ch]
+fffff807`19e36f6f 33ed            xor     ebp,ebp
+fffff807`19e36f71 0fb65921        movzx   ebx,byte ptr [rcx+21h]
+fffff807`19e36f75 458bf8          mov     r15d,r8d
+fffff807`19e36f78 440fb67120      movzx   r14d,byte ptr [rcx+20h]
+fffff807`19e36f7d 488bfa          mov     rdi,rdx
+fffff807`19e36f80 48c1e320        shl     rbx,20h
+fffff807`19e36f84 488bf1          mov     rsi,rcx
+fffff807`19e36f87 480bd8          or      rbx,rax
+fffff807`19e36f8a 49c1e620        shl     r14,20h
+fffff807`19e36f8e 8b4118          mov     eax,dword ptr [rcx+18h]
+fffff807`19e36f91 4c0bf0          or      r14,rax
+fffff807`19e36f94 41f6c001        test    r8b,1
+fffff807`19e36f98 0f844ae11f00    je      nt!MiInsertVad+0x1fe198 (fffff807`1a0350e8)  Branch
+
+nt!MiInsertVad+0x4e:
+fffff807`19e36f9e 0fb68238070000  movzx   eax,byte ptr [rdx+738h]
+fffff807`19e36fa5 2407            and     al,7
+fffff807`19e36fa7 3c02            cmp     al,2
+fffff807`19e36fa9 0f84dbe01f00    je      nt!MiInsertVad+0x1fe13a (fffff807`1a03508a)  Branch
+
+nt!MiInsertVad+0x5f:
+fffff807`19e36faf 488daa40070000  lea     rbp,[rdx+740h]
+
+nt!MiInsertVad+0x66:
+fffff807`19e36fb6 450f20c4        mov     r12,cr8
+fffff807`19e36fba b802000000      mov     eax,2
+fffff807`19e36fbf 440f22c0        mov     cr8,rax
+fffff807`19e36fc3 8b059fe6ac00    mov     eax,dword ptr [nt!KiIrqlFlags (fffff807`1a905668)]
+fffff807`19e36fc9 85c0            test    eax,eax
+fffff807`19e36fcb 0f85c5e01f00    jne     nt!MiInsertVad+0x1fe146 (fffff807`1a035096)  Branch
+
+nt!MiInsertVad+0x81:
+fffff807`19e36fd1 f605aee4ac0021  test    byte ptr [nt!PerfGlobalGroupMask+0x6 (fffff807`1a905486)],21h
+fffff807`19e36fd8 410fb6d4        movzx   edx,r12b
+fffff807`19e36fdc 488bcd          mov     rcx,rbp
+fffff807`19e36fdf 0f85f8e01f00    jne     nt!MiInsertVad+0x1fe18d (fffff807`1a0350dd)  Branch
+
+nt!MiInsertVad+0x95:
+fffff807`19e36fe5 e846130500      call    nt!ExpAcquireSpinLockExclusive (fffff807`19e88330)
+
+nt!MiInsertVad+0x9a:
+fffff807`19e36fea c7450400000000  mov     dword ptr [rbp+4],0
+fffff807`19e36ff1 33ed            xor     ebp,ebp
+
+nt!MiInsertVad+0xa3:
+fffff807`19e36ff3 488b87d8050000  mov     rax,qword ptr [rdi+5D8h]
+fffff807`19e36ffa 48ff87e8070000  inc     qword ptr [rdi+7E8h]
+fffff807`19e37001 48c1e80c        shr     rax,0Ch
+fffff807`19e37005 4889b7e0070000  mov     qword ptr [rdi+7E0h],rsi
+fffff807`19e3700c 483bd8          cmp     rbx,rax
+fffff807`19e3700f 772f            ja      nt!MiInsertVad+0xf0 (fffff807`19e37040)  Branch
+
+nt!MiInsertVad+0xc1:
+fffff807`19e37011 41f6c702        test    r15b,2
+fffff807`19e37015 7529            jne     nt!MiInsertVad+0xf0 (fffff807`19e37040)  Branch
+
+nt!MiInsertVad+0xc7:
+fffff807`19e37017 492bde          sub     rbx,r14
+fffff807`19e3701a 48c1e30c        shl     rbx,0Ch
+fffff807`19e3701e 4881c300100000  add     rbx,1000h
+fffff807`19e37025 48019f98040000  add     qword ptr [rdi+498h],rbx
+fffff807`19e3702c 488b8798040000  mov     rax,qword ptr [rdi+498h]
+fffff807`19e37033 48398790040000  cmp     qword ptr [rdi+490h],rax
+fffff807`19e3703a 0f82fe000000    jb      nt!MiInsertVad+0x1ee (fffff807`19e3713e)  Branch
+
+nt!MiInsertVad+0xf0:
+fffff807`19e37040 8b4618          mov     eax,dword ptr [rsi+18h]
+fffff807`19e37043 440fb64620      movzx   r8d,byte ptr [rsi+20h]
+fffff807`19e37048 488b97d8070000  mov     rdx,qword ptr [rdi+7D8h]
+fffff807`19e3704f 49c1e020        shl     r8,20h
+fffff807`19e37053 4c0bc0          or      r8,rax
+fffff807`19e37056 32c0            xor     al,al
+fffff807`19e37058 4885d2          test    rdx,rdx
+fffff807`19e3705b 7443            je      nt!MiInsertVad+0x150 (fffff807`19e370a0)  Branch
+
+nt!MiInsertVad+0x10d:
+fffff807`19e3705d 0f1f00          nop     dword ptr [rax]
+
+nt!MiInsertVad+0x110:
+fffff807`19e37060 0fb64a21        movzx   ecx,byte ptr [rdx+21h]
+fffff807`19e37064 8b421c          mov     eax,dword ptr [rdx+1Ch]
+fffff807`19e37067 48c1e120        shl     rcx,20h
+fffff807`19e3706b 480bc8          or      rcx,rax
+fffff807`19e3706e 4c3bc1          cmp     r8,rcx
+fffff807`19e37071 7713            ja      nt!MiInsertVad+0x136 (fffff807`19e37086)  Branch
+
+nt!MiInsertVad+0x123:
+fffff807`19e37073 0fb64a20        movzx   ecx,byte ptr [rdx+20h]
+fffff807`19e37077 8b4218          mov     eax,dword ptr [rdx+18h]
+fffff807`19e3707a 48c1e120        shl     rcx,20h
+fffff807`19e3707e 480bc8          or      rcx,rax
+fffff807`19e37081 4c3bc1          cmp     r8,rcx
+fffff807`19e37084 720d            jb      nt!MiInsertVad+0x143 (fffff807`19e37093)  Branch
+
+nt!MiInsertVad+0x136:
+fffff807`19e37086 488b4208        mov     rax,qword ptr [rdx+8]
+fffff807`19e3708a 4885c0          test    rax,rax
+fffff807`19e3708d 750c            jne     nt!MiInsertVad+0x14b (fffff807`19e3709b)  Branch
+
+nt!MiInsertVad+0x13f:
+fffff807`19e3708f b001            mov     al,1
+fffff807`19e37091 eb0d            jmp     nt!MiInsertVad+0x150 (fffff807`19e370a0)  Branch
+
+nt!MiInsertVad+0x143:
+fffff807`19e37093 488b02          mov     rax,qword ptr [rdx]
+fffff807`19e37096 4885c0          test    rax,rax
+fffff807`19e37099 7405            je      nt!MiInsertVad+0x150 (fffff807`19e370a0)  Branch
+
+nt!MiInsertVad+0x14b:
+fffff807`19e3709b 488bd0          mov     rdx,rax
+fffff807`19e3709e ebc0            jmp     nt!MiInsertVad+0x110 (fffff807`19e37060)  Branch
+
+nt!MiInsertVad+0x150:
+fffff807`19e370a0 4c8bce          mov     r9,rsi
+fffff807`19e370a3 488d8fd8070000  lea     rcx,[rdi+7D8h]
+fffff807`19e370aa 440fb6c0        movzx   r8d,al
+fffff807`19e370ae e8bd000000      call    nt!RtlAvlInsertNodeEx (fffff807`19e37170)
+fffff807`19e370b3 8b4e30          mov     ecx,dword ptr [rsi+30h]
+fffff807`19e370b6 0fbae114        bt      ecx,14h
+fffff807`19e370ba 7265            jb      nt!MiInsertVad+0x1d1 (fffff807`19e37121)  Branch
+
+nt!MiInsertVad+0x16c:
+fffff807`19e370bc 488bce          mov     rcx,rsi
+fffff807`19e370bf e80c110500      call    nt!MiVadMapsLargeImage (fffff807`19e881d0)
+fffff807`19e370c4 85c0            test    eax,eax
+fffff807`19e370c6 0f8524e01f00    jne     nt!MiInsertVad+0x1fe1a0 (fffff807`1a0350f0)  Branch
+
+nt!MiInsertVad+0x17c:
+fffff807`19e370cc 8b4e30          mov     ecx,dword ptr [rsi+30h]
+fffff807`19e370cf 8bc1            mov     eax,ecx
+fffff807`19e370d1 2470            and     al,70h
+fffff807`19e370d3 3c10            cmp     al,10h
+fffff807`19e370d5 7473            je      nt!MiInsertVad+0x1fa (fffff807`19e3714a)  Branch
+
+nt!MiInsertVad+0x187:
+fffff807`19e370d7 8bc1            mov     eax,ecx
+fffff807`19e370d9 83e070          and     eax,70h
+fffff807`19e370dc 3c30            cmp     al,30h
+fffff807`19e370de 0f8438e01f00    je      nt!MiInsertVad+0x1fe1cc (fffff807`1a03511c)  Branch
+
+nt!MiInsertVad+0x194:
+fffff807`19e370e4 4180fc11        cmp     r12b,11h
+fffff807`19e370e8 7410            je      nt!MiInsertVad+0x1aa (fffff807`19e370fa)  Branch
+
+nt!MiInsertVad+0x19a:
+fffff807`19e370ea 410fb6d4        movzx   edx,r12b
+fffff807`19e370ee 488d8f80060000  lea     rcx,[rdi+680h]
+fffff807`19e370f5 e8960f0500      call    nt!MiUnlockWorkingSetExclusive (fffff807`19e88090)
+
+nt!MiInsertVad+0x1aa:
+fffff807`19e370fa 4885ed          test    rbp,rbp
+fffff807`19e370fd 0f8541e01f00    jne     nt!MiInsertVad+0x1fe1f4 (fffff807`1a035144)  Branch
+
+nt!MiInsertVad+0x1b3:
+fffff807`19e37103 488b5c2450      mov     rbx,qword ptr [rsp+50h]
+fffff807`19e37108 488b6c2458      mov     rbp,qword ptr [rsp+58h]
+fffff807`19e3710d 488b742460      mov     rsi,qword ptr [rsp+60h]
+fffff807`19e37112 4883c420        add     rsp,20h
+fffff807`19e37116 415f            pop     r15
+fffff807`19e37118 415e            pop     r14
+fffff807`19e3711a 415d            pop     r13
+fffff807`19e3711c 415c            pop     r12
+fffff807`19e3711e 5f              pop     rdi
+fffff807`19e3711f c3              ret
+
+nt!MiInsertVad+0x1d1:
+fffff807`19e37121 0fbae116        bt      ecx,16h
+fffff807`19e37125 0f82c8df1f00    jb      nt!MiInsertVad+0x1fe1a3 (fffff807`1a0350f3)  Branch
+
+nt!MiInsertVad+0x1db:
+fffff807`19e3712b 8bc1            mov     eax,ecx
+fffff807`19e3712d 2500000c00      and     eax,0C0000h
+fffff807`19e37132 3d00000800      cmp     eax,80000h
+fffff807`19e37137 7283            jb      nt!MiInsertVad+0x16c (fffff807`19e370bc)  Branch
+
+nt!MiInsertVad+0x1e9:
+fffff807`19e37139 e9b5df1f00      jmp     nt!MiInsertVad+0x1fe1a3 (fffff807`1a0350f3)  Branch
+
+nt!MiInsertVad+0x1ee:
+fffff807`19e3713e 48898790040000  mov     qword ptr [rdi+490h],rax
+fffff807`19e37145 e9f6feffff      jmp     nt!MiInsertVad+0xf0 (fffff807`19e37040)  Branch
+
+nt!MiInsertVad+0x1fa:
+fffff807`19e3714a 488b8790060000  mov     rax,qword ptr [rdi+690h]
+fffff807`19e37151 48ff8030010000  inc     qword ptr [rax+130h]
+fffff807`19e37158 8b4e30          mov     ecx,dword ptr [rsi+30h]
+fffff807`19e3715b e977ffffff      jmp     nt!MiInsertVad+0x187 (fffff807`19e370d7)  Branch
+
+nt!MiInsertVad+0x1fe13a:
+fffff807`1a03508a 488d2d6f358200  lea     rbp,[nt!MiState+0x2ec0 (fffff807`1a858600)]
+fffff807`1a035091 e9201fe0ff      jmp     nt!MiInsertVad+0x66 (fffff807`19e36fb6)  Branch
+
+nt!MiInsertVad+0x1fe146:
+fffff807`1a035096 a801            test    al,1
+fffff807`1a035098 0f84331fe0ff    je      nt!MiInsertVad+0x81 (fffff807`19e36fd1)  Branch
+
+nt!MiInsertVad+0x1fe14e:
+fffff807`1a03509e 4180fc0f        cmp     r12b,0Fh
+fffff807`1a0350a2 0f87291fe0ff    ja      nt!MiInsertVad+0x81 (fffff807`19e36fd1)  Branch
+
+nt!MiInsertVad+0x1fe158:
+fffff807`1a0350a8 65488b042520000000 mov   rax,qword ptr gs:[20h]
+fffff807`1a0350b1 ba01000000      mov     edx,1
+fffff807`1a0350b6 410fb6cc        movzx   ecx,r12b
+fffff807`1a0350ba ffc1            inc     ecx
+fffff807`1a0350bc 48d3e2          shl     rdx,cl
+fffff807`1a0350bf 4c8b88b8840000  mov     r9,qword ptr [rax+84B8h]
+fffff807`1a0350c6 ffca            dec     edx
+fffff807`1a0350c8 f7d2            not     edx
+fffff807`1a0350ca 83e204          and     edx,4
+fffff807`1a0350cd 458b4114        mov     r8d,dword ptr [r9+14h]
+fffff807`1a0350d1 410bd0          or      edx,r8d
+fffff807`1a0350d4 41895114        mov     dword ptr [r9+14h],edx
+fffff807`1a0350d8 e9f41ee0ff      jmp     nt!MiInsertVad+0x81 (fffff807`19e36fd1)  Branch
+
+nt!MiInsertVad+0x1fe18d:
+fffff807`1a0350dd e8b6801800      call    nt!ExpAcquireSpinLockExclusiveAtDpcLevelInstrumented (fffff807`1a1bd198)
+fffff807`1a0350e2 90              nop
+fffff807`1a0350e3 e9021fe0ff      jmp     nt!MiInsertVad+0x9a (fffff807`19e36fea)  Branch
+
+nt!MiInsertVad+0x1fe198:
+fffff807`1a0350e8 41b411          mov     r12b,11h
+fffff807`1a0350eb e9031fe0ff      jmp     nt!MiInsertVad+0xa3 (fffff807`19e36ff3)  Branch
+
+nt!MiInsertVad+0x1fe1a0:
+fffff807`1a0350f0 8b4e30          mov     ecx,dword ptr [rsi+30h]
+
+nt!MiInsertVad+0x1fe1a3:
+fffff807`1a0350f3 8bc1            mov     eax,ecx
+fffff807`1a0350f5 488d0d141bc0ff  lea     rcx,[nt!MiVadPageSizes (fffff807`19c36c10)]
+fffff807`1a0350fc 48c1e812        shr     rax,12h
+fffff807`1a035100 83e003          and     eax,3
+fffff807`1a035103 48813cc100020000 cmp     qword ptr [rcx+rax*8],200h
+fffff807`1a03510b 0f82bb1fe0ff    jb      nt!MiInsertVad+0x17c (fffff807`19e370cc)  Branch
+
+nt!MiInsertVad+0x1fe1c1:
+fffff807`1a035111 ff875c080000    inc     dword ptr [rdi+85Ch]
+fffff807`1a035117 e9b01fe0ff      jmp     nt!MiInsertVad+0x17c (fffff807`19e370cc)  Branch
+
+nt!MiInsertVad+0x1fe1cc:
+fffff807`1a03511c 81e100001003    and     ecx,3100000h
+fffff807`1a035122 81f900001002    cmp     ecx,2100000h
+fffff807`1a035128 0f84b61fe0ff    je      nt!MiInsertVad+0x194 (fffff807`19e370e4)  Branch
+
+nt!MiInsertVad+0x1fe1de:
+fffff807`1a03512e ba00010000      mov     edx,100h
+fffff807`1a035133 488bce          mov     rcx,rsi
+fffff807`1a035136 e8b145e2ff      call    nt!MiLocateLockedVadEvent (fffff807`19e596ec)
+fffff807`1a03513b 488d6808        lea     rbp,[rax+8]
+fffff807`1a03513f e9a01fe0ff      jmp     nt!MiInsertVad+0x194 (fffff807`19e370e4)  Branch
+
+nt!MiInsertVad+0x1fe1f4:
+fffff807`1a035144 488bd5          mov     rdx,rbp
+fffff807`1a035147 488bcf          mov     rcx,rdi
+fffff807`1a03514a e8cdbd4a00      call    nt!MiAweViewInserter (fffff807`1a4e0f1c)
+fffff807`1a03514f 90              nop
+fffff807`1a035150 e9ae1fe0ff      jmp     nt!MiInsertVad+0x1b3 (fffff807`19e37103)  Branch
