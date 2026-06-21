@@ -14,6 +14,29 @@ A Windows kernel-interface tool that communicates with a companion driver via sh
 
 ---
 
+## Why
+
+Most memory-inspection tooling either runs entirely from usermode — and so
+can't touch paging structures or another process's VAD tree — or hardcodes
+kernel offsets that break on the next Windows build. This tool avoids both.
+
+- **Build-agnostic by design.** At startup it parses `ntoskrnl.exe`,
+  fetches the matching PDB, and resolves every required offset and RVA at
+  runtime via DbgHelp. No per-build offset tables, no recompiling when
+  Patch Tuesday moves a field.
+- **Direct access to the structures that matter.** VAD nodes, Control
+  Areas, and PTEs are first-class operations here — walk the tree, insert
+  or delete nodes, relink a PTE to a chosen physical page, or map a section
+  view into another process.
+- **A workbench, not a one-shot.** The interactive loop is meant for
+  iterative research — populate, inspect, modify, read back — rather than
+  firing a single fixed action.
+
+Intended for Windows internals research, reverse engineering, and
+memory-forensics experimentation on systems you own or are authorized to test
+
+---
+
 ## Command-line arguments
 
 | Flag | Argument | Description |
